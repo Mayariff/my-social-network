@@ -1,0 +1,35 @@
+.dialogs {
+    display: grid;
+    grid-template-columns : 2fr 10fr;
+    padding: 10px;
+
+}
+.dialogItems{
+
+    padding: 10px;
+}
+
+.active {
+    color: darkslategray;
+    font-weight: bolder;
+}
+
+.massages{
+    padding: 20px;
+}
+.styleSendMessage{
+ margin-left: 200px;
+    margin-top: 20px;
+}
+
+.button {
+
+    margin: 10px auto;
+    padding: 3px;
+}
+textarea {
+    width: 225px;
+    border-radius: 5px;
+}
+
+

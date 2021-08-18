@@ -1,0 +1,6 @@
+.photo{
+    width: 90px;
+    height: 90px;
+    border: 1px solid gray;
+    border-radius: 50%;
+}

@@ -1,0 +1,11 @@
+.dialog{
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+.dialog img{
+    width: 60px;
+    height: 60px;
+    border: 1px solid gray;
+    border-radius: 50%;
+}
