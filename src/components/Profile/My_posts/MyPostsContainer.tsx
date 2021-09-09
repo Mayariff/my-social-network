@@ -19,8 +19,8 @@ export type MyPostsType = mapStateToPropsType & mapDispatchToPropsType
 
 const mapStateToProps =(state:AppStateType):mapStateToPropsType => {
     return {
-        posts: state.profilePage.profilePage.posts,
-        newPostText: state.profilePage.profilePage.newPostText
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
     }
 }
 

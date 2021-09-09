@@ -1,22 +1,14 @@
 import React from "react";
-import MyPosts from "./My_posts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {profilePageType} from "../../redux/store";
 import MyPostsContainer from "./My_posts/MyPostsContainer";
+import {MapStatePropsType} from "./ProfileContainer";
 
-/*type profileType={
-    state: profilePageType
-    //addPost: (p:string)=>void
-   //updateNewPostText: (p:string)=>void
-    posts: Array<postType>
-    dispatch: (action:ActionTypes)=>void
-}*/
 
-const Profile =(props: any) =>{
+const Profile =(props:MapStatePropsType) =>{
 
     return(
         <div >
-            <ProfileInfo />
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer />
         </div>
     )

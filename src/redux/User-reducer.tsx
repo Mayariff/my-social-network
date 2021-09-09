@@ -1,60 +1,31 @@
 const FOLLOW = 'FOLLOW'
 const UN_FOLLOW = 'UN-FOLLOW';
 const SET_USERS = "SET_USERS";
-
+const SET_CURRENT_PAGES = "SET_CURRENT_PAGES";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 export type userType = {
     id: number
-    photoURL: string
+    photos: {
+        small: string
+    }
     followed: boolean
-    fullname: string
+    name: string
     status: string
-    location: {
+    /*location: {
         city: string
         country: string
-    }
+    }*/
 }
 export type InitialStateType = typeof initialState
 
-let initialState ={
-    users:[] as Array<userType>
+let initialState = {
+    users: [] as Array<userType>,
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: true
 }
-/*let initialState = {
-    users: [
-        {
-            id: 1,
-            photoURL: "http://thepeoplesmovies.files.wordpress.com/2009/10/avatar1.jpg",
-            followed: false,
-            fullname: 'Dimian',
-            status: "i like cheese",
-            location: {
-                city: "minsk",
-                country: "Bellarus",
-            },
-        },
-        {
-            id: 777,
-            photoURL: "http://thepeoplesmovies.files.wordpress.com/2009/10/avatar1.jpg",
-            followed: true,
-            fullname: 'Sveta',
-            status: "i am boss",
-            location: {
-                city: "Kiev",
-                country: "Ukraine",
-            },
-        },
-        {
-            id: 123,
-            photoURL: "http://thepeoplesmovies.files.wordpress.com/2009/10/avatar1.jpg",
-            followed: false,
-            fullname: 'Ignat',
-            status: "loving DDD",
-            location: {
-                city: "London",
-                country: "UK",
-            },
-        }
-    ] as Array<userType>
-}*/
 
 
 export const userReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
@@ -82,16 +53,34 @@ export const userReducer = (state: InitialStateType = initialState, action: Acti
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users,
-                    ...action.users]
+                users: action.users
             }
+        case SET_CURRENT_PAGES:
+            return {...state, currentPage: action.currentPage}
+        case SET_TOTAL_USERS_COUNT:
+            return {...state, totalUsersCount: action.count}
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
 };
 
-export type ActionTypes = ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> | ReturnType<typeof setUsersAC>
+export type ActionTypes =
+    ReturnType<typeof follow>
+    | ReturnType<typeof unFollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPages>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof setToggleIsFetching>
 
-export const followAC = (userID: number) => ({type: FOLLOW, userID}) as const
-export const unFollowAC = (userID: number) => ({type: UN_FOLLOW, userID}) as const
-export const setUsersAC = (users: Array<userType>) => ({type: SET_USERS, users}) as const
+export const follow = (userID: number) => ({type: FOLLOW, userID}) as const
+export const unFollow = (userID: number) => ({type: UN_FOLLOW, userID}) as const
+export const setUsers = (users: Array<userType>) => ({type: SET_USERS, users}) as const
+export const setCurrentPages = (currentPage: number) => ({type: SET_CURRENT_PAGES, currentPage}) as const
+export const setTotalUsersCount = (totalUsersCount: number) => ({
+    type: SET_TOTAL_USERS_COUNT,
+    count: totalUsersCount
+}) as const
+export const setToggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching}) as const

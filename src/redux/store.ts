@@ -208,6 +208,6 @@ export const  AddMessageAC= (newMessageText:string) =>( {type: ADD_MESSAGE, Mess
 export const UpdateNewMessageTextAC=(text:string) =>( {type: UPDATE_NEW_MESSAGE_TEXT,newMessageText:text} ) as const*/
 
 
-export default store;
+//export default store;
 //window.store =store;
 
