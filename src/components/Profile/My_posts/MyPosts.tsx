@@ -1,9 +1,6 @@
 import React, {ChangeEvent} from "react";
 import classes from './My_posts.module.css'
 import Post from "./Post/Post";
-
-import {addPostAC, postType, UpdateNewPostTextAC} from "../../../redux/Profile-reducer";
-import {ActionTypes} from "../../../redux/redux-store";
 import {MyPostsType} from "./MyPostsContainer";
 
 
@@ -24,7 +21,6 @@ const MyPosts = (props:MyPostsType) => {
 
 
   let onAddPost = () =>{
-     //props.addPost(props.newPostText)
       props.addPost()
   }
 

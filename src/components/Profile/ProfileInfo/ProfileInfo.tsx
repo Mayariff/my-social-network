@@ -2,7 +2,6 @@ import React from "react";
 import classes from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader";
 import Ava from "../../../assets/image/user.jpg";
-import {profileType} from "../../../redux/Profile-reducer";
 import {MapStatePropsType} from "../ProfileContainer";
 
 

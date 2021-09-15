@@ -1,7 +1,4 @@
-import React from "react";
 import FriendsBlock from "./FriendsBlock";
-
-
 import {connect} from "react-redux";
 import {friendType} from "../../../redux/Navbar-reducer";
 import {AppStateType} from "../../../redux/redux-store";
