@@ -1,5 +1,8 @@
 import {ActionTypes} from "./redux-store";
-import {usersAPI} from "../API/Api";
+import { usersAPI} from "../API/Api";
+import {Dispatch} from "redux";
+import {AxiosResponse} from "axios";
+import {ResultCodesEnum} from "./Auth-reduser";
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = "SET_USER_PROFILE";
@@ -39,7 +42,7 @@ let initialState = {
         {id: 3, content: 'lalala', likescount: 0},
     ] as Array<postType>,
     newPostText: "",
-    profile:{} as profileType
+    profile:{} as profileType,
 }
 
 
@@ -59,7 +62,6 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
         case UPDATE_NEW_POST_TEXT:
                 return {...state,
                         newPostText: action.newPostText};
-
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
         default:
@@ -70,10 +72,18 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
     export const UpdateNewPostTextAC = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newPostText: text}) as const
    export const setUserProfile =(profile: profileType)=> ({type: SET_USER_PROFILE, profile }) as const
 
-export const getUserProfile =(userId: string)=>(dispatch: any)=>{
+export type getProfileResponseType={
+
+    resultCode: ResultCodesEnum
+    data: profileType
+
+}
+
+
+
+export const getUserProfile =(userId: string)=>(dispatch: Dispatch<ActionTypes>)=>{
         return usersAPI.getProfile(userId)
-            //@ts-ignore
-            .then(response => {
+            .then((response:AxiosResponse<any>) => {
            dispatch(setUserProfile(response.data));
         })
 }

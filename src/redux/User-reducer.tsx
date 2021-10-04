@@ -1,5 +1,7 @@
-import {usersAPI} from "../API/Api";
-import {mapDispatchToPropsType, UsersPropsType} from "../components/Users/UsersContainer";
+import {UserResponseType, usersAPI} from "../API/Api";
+import {Dispatch} from "redux";
+import {AxiosResponse} from "axios";
+import {MeResponseType} from "./Auth-reduser";
 
 const FOLLOW = 'FOLLOW'
 const UN_FOLLOW = 'UN-FOLLOW';
@@ -70,7 +72,7 @@ export const userReducer = (state: InitialStateType = initialState, action: Acti
             return {...state,
                 followingInProgress: action.isFetching?
                     [...state.followingInProgress, action.userID]
-                    :[...state.followingInProgress.filter(id=> id != action.userID) ]}
+                    :[...state.followingInProgress.filter(id=> id !== action.userID) ]}
         default:
             return state
     }
@@ -99,12 +101,11 @@ export const setToggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FE
 export const setToggleFollowingProgress= (isFetching: boolean, userID: number) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userID}) as const
 
 export const getUsers=(currentPage: number, pageSize: number)=>{
-    return (dispatch: any)=> {
+    return (dispatch: Dispatch<ActionTypes>)=> {
 
         dispatch(setToggleIsFetching(true));
-        usersAPI.getUsers(currentPage, pageSize).then(
-           //@ts-ignore
-            data => {
+        usersAPI.getUsers(currentPage, pageSize)
+            .then( data => {
                 dispatch(setToggleIsFetching(false));
                 dispatch(setUsers(data.items));
                 dispatch(setTotalUsersCount(data.totalCount))
@@ -112,11 +113,10 @@ export const getUsers=(currentPage: number, pageSize: number)=>{
     }
 }
 export const follow = (userID: number)=>{
-    return (dispatch: any)=> {
+    return (dispatch: Dispatch<ActionTypes>)=> {
         dispatch(setToggleFollowingProgress (true, userID));
         usersAPI.follow(userID)
-            //@ts-ignore
-            .then(response => {
+            .then((response: AxiosResponse<UserResponseType>) => {
                 if(response.data.resultCode === 0){
                     dispatch(followSuccess(userID))
                 }
@@ -125,11 +125,10 @@ export const follow = (userID: number)=>{
     }
 }
 export const unFollow = (userID: number)=>{
-    return (dispatch: any)=> {
+    return (dispatch: Dispatch<ActionTypes>)=> {
        dispatch(setToggleFollowingProgress(true, userID));
         usersAPI.unfollow(userID)
-            //@ts-ignore
-            .then(response => {
+            .then((response: AxiosResponse<UserResponseType>) => {
                 if (response.data.resultCode === 0) {
                     dispatch(unFollowSuccess(userID))
                 }

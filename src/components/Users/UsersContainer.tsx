@@ -12,6 +12,9 @@ import {
 
 import Users from "./Users";
 import Preloader from "../common/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
+
 
 
 type MapStatePropsType={
@@ -72,10 +75,20 @@ const mapStateToProps = (state: AppStateType):MapStatePropsType  => {
         followingInProgress:  state.users.followingInProgress
     }
 }
+//let withRedirect = withAuthRedirect(UsersAPIComponent)
 
-
-export default connect(mapStateToProps,  {
+/*export default withAuthRedirect(
+    connect(mapStateToProps,  {
     acceptUnFollow: unFollowSuccess, acceptFollow: followSuccess, setCurrentPages,
     setToggleFollowingProgress,
     getUsers,
-})(UsersAPIComponent);
+})(UsersAPIComponent));*/
+
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+    connect(mapStateToProps,  {
+        acceptUnFollow: unFollowSuccess, acceptFollow: followSuccess, setCurrentPages,
+        setToggleFollowingProgress,
+        getUsers,
+    }))(UsersAPIComponent)
+

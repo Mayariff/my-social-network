@@ -1,18 +1,25 @@
-import * as axios from "axios";
+import axios, {AxiosResponse} from "axios";
+import {MeResponseType, ResultCodesEnum} from "../redux/Auth-reduser";
+import {UsersPropsType} from "../components/Users/UsersContainer";
+import {userType} from "../redux/User-reducer";
 
-//@ts-ignore
+
 const instance = axios.create({
     withCredentials: true,
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
     headers: {
         "API-KEY": `4b54f94c-27d6-4b20-ab86-b5bac951f8ff` },
 });
+export type UserResponseType= {
+    items: Array<userType>
+    totalCount: number
+    error: string
+    resultCode: ResultCodesEnum
+}
 
-//@ts-ignore
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get(`users?page= ${currentPage}&count= ${pageSize}`)
-            //@ts-ignore
+        return instance.get<UserResponseType>(`users?page= ${currentPage}&count= ${pageSize}`)
             .then(response => {
                 return response.data
             })
@@ -30,6 +37,6 @@ export const usersAPI = {
 
 export const AuthAPI ={
     me(){
-        return instance.get(`auth/me`)
+        return instance.get<MeResponseType>(`auth/me`)
     }
 }

@@ -3,10 +3,10 @@ import classes from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader";
 import Ava from "../../../assets/image/user.jpg";
 import {MapStatePropsType} from "../ProfileContainer";
+import {profileType} from "../../../redux/Profile-reducer";
 
 
-
-const ProfileInfo =(props:MapStatePropsType ) =>{
+const ProfileInfo =(props: MapStatePropsType) =>{
 
   if (!props.profile.userId){
         return <Preloader />
@@ -14,6 +14,7 @@ const ProfileInfo =(props:MapStatePropsType ) =>{
     return(
         <div >
             <div className={classes.containers}>
+
                 <img
                     src="https://filedn.com/ltOdFv1aqz1YIFhf4gTY8D7/ingus-info/BLOGS/Photography-stocks3/stock-photography-slider.jpg"
                      alt="gory"/>

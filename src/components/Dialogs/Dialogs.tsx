@@ -5,17 +5,6 @@ import Massage from "./Message/Message";
 import { dialogsType, messagesType} from "../../redux/Dialog-reducer";
 import {dialogPageType} from "./DialogsContainer";
 
-
-/*type PageDialogsType = {
-    //state: dialogPageType
-    //addMessage: (text: string) => void
-    //updateNewMessageText: (text: string) => void
-    messages: Array<messagesType>
-    dispatch: (action: ActionTypes) => void
-    newMessageText: string
-}*/
-
-
 const Dialogs = (props:dialogPageType) => {
 
     let state= props.dialogPage;
@@ -34,6 +23,7 @@ const Dialogs = (props:dialogPageType) => {
         let text = e.currentTarget.value;
         props.updateNewMessageText(text);
     }
+
 
     return (
         <>
