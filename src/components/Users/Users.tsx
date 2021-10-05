@@ -4,7 +4,6 @@ import userPhoto from "../../assets/image/user.jpg";
 import {userType} from "../../redux/User-reducer";
 import { NavLink } from 'react-router-dom';
 import {v1} from "uuid";
-import {usersAPI} from "../../API/Api";
 
 
 type propsType = {

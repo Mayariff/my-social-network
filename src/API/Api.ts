@@ -1,6 +1,5 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 import {MeResponseType, ResultCodesEnum} from "../redux/Auth-reduser";
-import {UsersPropsType} from "../components/Users/UsersContainer";
 import {userType} from "../redux/User-reducer";
 
 
@@ -31,8 +30,20 @@ export const usersAPI = {
         return instance.delete(`follow/${userID}`)
     },
     getProfile(userId: string){
-        return instance.get('profile/'+userId);
+        return ProfileAPI.getProfile(userId)
     },
+}
+
+export const ProfileAPI = {
+    getProfile(userId: string) {
+        return instance.get('profile/' + userId);
+    },
+    getStatus(userId: string){
+        return instance.get('profile/status/' + userId);
+    },
+    updateStatus(status: string){
+        return instance.put('profile/status/'+ {status:status});
+    }
 }
 
 export const AuthAPI ={

@@ -1,7 +1,7 @@
 import {UserResponseType, usersAPI} from "../API/Api";
 import {Dispatch} from "redux";
 import {AxiosResponse} from "axios";
-import {MeResponseType} from "./Auth-reduser";
+
 
 const FOLLOW = 'FOLLOW'
 const UN_FOLLOW = 'UN-FOLLOW';
