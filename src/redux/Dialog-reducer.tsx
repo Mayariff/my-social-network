@@ -1,7 +1,7 @@
 import {ActionTypes} from "./redux-store";
 
 const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+/*const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';*/
 
 /*export type dialogPageType = {
     dialogs: Array<dialogsType>
@@ -50,23 +50,23 @@ export type InitialStateType = typeof initialState
 export const dialogReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
 
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT:
+        /*case UPDATE_NEW_MESSAGE_TEXT:
             return {...state,
-                newMessageText: action.newMessageText};
+                newMessageText: action.newMessageText};*/
 
         case ADD_MESSAGE:
-            let newMessage = state.newMessageText
+            let newMessage = action.newMessageBody
             return {
                 ...state,
-                newMessageText: "",
                 messages: [...state.messages,{id: 100, content: newMessage}]
             }
-           /* stateCopy.newMessageText = "";
-            stateCopy.messages.push({id: 100, content: newMessage})*/
+
         default:
             return state;
     }
 }
 
-export const AddMessageAC = () => ({type: ADD_MESSAGE}) as const
-export const UpdateNewMessageTextAC = (text: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newMessageText: text}) as const
+export const AddMessageAC = (newMessageBody: string) => ({type: ADD_MESSAGE, newMessageBody}) as const
+/*
+export const UpdateNewMessageTextAC = (text: string) => (
+    {type: UPDATE_NEW_MESSAGE_TEXT, newMessageText: text}) as const*/

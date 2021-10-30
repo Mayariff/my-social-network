@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {addPostAC, profileReducer, setStatus, setUserProfile, UpdateNewPostTextAC} from "./Profile-reducer";
-import {AddMessageAC, dialogReducer, UpdateNewMessageTextAC} from "./Dialog-reducer";
+import {addPostAC, profileReducer, setStatus, setUserProfile} from "./Profile-reducer";
+import {AddMessageAC, dialogReducer} from "./Dialog-reducer";
 import {navbarReducer} from "./Navbar-reducer";
 import {userReducer} from "./User-reducer";
 import {authReducer} from "./Auth-reduser";
@@ -9,9 +9,9 @@ import { reducer as formReducer } from 'redux-form'
 
 
 export type ActionTypes = ReturnType<typeof addPostAC> |
-    ReturnType<typeof UpdateNewPostTextAC> |
+  /*  ReturnType<typeof UpdateNewPostTextAC> |*/
     ReturnType<typeof AddMessageAC> |
-    ReturnType<typeof UpdateNewMessageTextAC>|
+   /* ReturnType<typeof UpdateNewMessageTextAC>|*/
     ReturnType<typeof setUserProfile>|
     ReturnType<typeof setStatus>
 

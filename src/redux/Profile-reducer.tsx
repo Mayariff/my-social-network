@@ -4,7 +4,7 @@ import {Dispatch} from "redux";
 import {AxiosResponse} from "axios";
 import {ResultCodesEnum} from "./Auth-reduser";
 const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+/*const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';*/
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS ";
 
@@ -39,7 +39,7 @@ let initialState = {
         {id: 2, content: 'It\'s my first  post', likescount: 11},
         {id: 3, content: 'lalala', likescount: 0},
     ] as Array<postType>,
-    newPostText: "",
+    /*newPostText: "",*/
     profile:{} as profileType,
     status:""
 }
@@ -49,18 +49,18 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
     switch (action.type) {
         case ADD_POST:
             let newPost: postType = {
-                id: 5,
-                content: state.newPostText,
+                id: 15,
+                content: action.newPostBody,
                 likescount: 0
             };
             return {
                     ...state,
                     posts: [...state.posts, newPost],
-                    newPostText: ""
+                    /*newPostText: ""*/
             }
-        case UPDATE_NEW_POST_TEXT:
+        /*case UPDATE_NEW_POST_TEXT:
                 return {...state,
-                        newPostText: action.newPostText};
+                        newPostText: action.newPostText};*/
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
         case SET_STATUS:
@@ -69,8 +69,8 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
             return state;
         }
     };
-    export const addPostAC = () => ({type: ADD_POST}) as const
-    export const UpdateNewPostTextAC = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newPostText: text}) as const
+    export const addPostAC = (newPostBody: string) => ({type: ADD_POST, newPostBody}) as const
+  /*  export const UpdateNewPostTextAC = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newPostText: text}) as const*/
    export const setUserProfile =(profile: profileType)=> ({type: SET_USER_PROFILE, profile }) as const
 export const setStatus = (status: string)=> ({type: SET_STATUS, status}) as const
 
