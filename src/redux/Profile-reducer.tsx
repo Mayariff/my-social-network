@@ -1,5 +1,5 @@
 import {ActionTypes} from "./redux-store";
-import {ProfileAPI, usersAPI} from "../API/Api";
+import {ProfileAPI, ProfileResponseType, UserResponseType, usersAPI} from "../API/Api";
 import {Dispatch} from "redux";
 import {AxiosResponse} from "axios";
 import {ResultCodesEnum} from "./Auth-reduser";
@@ -83,13 +83,13 @@ export type getProfileResponseType={
 
 
 
-export const getUserProfile =(userId: string)=>(dispatch: Dispatch<ActionTypes>)=>{
+export const getUserProfile =(userId: number)=>(dispatch: Dispatch<ActionTypes>)=>{
         return usersAPI.getProfile(userId)
             .then((response:AxiosResponse<any>) => {
            dispatch(setUserProfile(response.data));
         })
 }
-export const getStatus =(userId: string)=>(dispatch: Dispatch<ActionTypes>)=>{
+export const getStatus =(userId: number)=>(dispatch: Dispatch<ActionTypes>)=>{
     return ProfileAPI.getStatus(userId)
         .then((response:AxiosResponse<any>) => {
             dispatch(setStatus(response.data));

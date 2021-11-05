@@ -1,6 +1,8 @@
 import {UserResponseType, usersAPI} from "../API/Api";
 import {Dispatch} from "redux";
 import {AxiosResponse} from "axios";
+import {ThunkAction} from "redux-thunk";
+
 
 
 const FOLLOW = 'FOLLOW'
@@ -100,8 +102,8 @@ export const setTotalUsersCount = (totalUsersCount: number) => ({
 export const setToggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching}) as const
 export const setToggleFollowingProgress= (isFetching: boolean, userID: number) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userID}) as const
 
-export const getUsers=(currentPage: number, pageSize: number)=>{
-    return (dispatch: Dispatch<ActionTypes>)=> {
+export const getUsers=(currentPage: number, pageSize: number): ThunkAction<Promise<void>, InitialStateType, unknown, ActionTypes>=>{
+    return async (dispatch: Dispatch<ActionTypes>)=> {
 
         dispatch(setToggleIsFetching(true));
         usersAPI.getUsers(currentPage, pageSize)
@@ -112,6 +114,8 @@ export const getUsers=(currentPage: number, pageSize: number)=>{
             });
     }
 }
+
+
 export const follow = (userID: number)=>{
     return (dispatch: Dispatch<ActionTypes>)=> {
         dispatch(setToggleFollowingProgress (true, userID));
@@ -124,8 +128,10 @@ export const follow = (userID: number)=>{
             });
     }
 }
-export const unFollow = (userID: number)=>{
-    return (dispatch: Dispatch<ActionTypes>)=> {
+
+export type ThunkType =ThunkAction<Promise<void>, InitialStateType, unknown, ActionTypes>
+export const unFollow = (userID: number):ThunkType=>{
+    return async (dispatch)=> {
        dispatch(setToggleFollowingProgress(true, userID));
         usersAPI.unfollow(userID)
             .then((response: AxiosResponse<UserResponseType>) => {

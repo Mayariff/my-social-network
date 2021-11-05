@@ -7,9 +7,12 @@ import {AppStateType} from "../../redux/redux-store";
 import {compose} from "redux";
 
 
+
 export type MapStatePropsType = {
     profile: profileType
     status: string
+    autorizedUserID: number|null,
+    isAuth: boolean
 }
 
 
@@ -24,17 +27,25 @@ type PathParamsType = {
 }
 type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 class ProfileContainer extends React.Component<PropsType>{
+
     componentDidMount() {
         let userId= this.props.match.params.userId;
         if(!userId){
-            userId = '2';
+            let userId1 = this.props.autorizedUserID;
+            debugger
+            if(userId1){
+            userId = userId1.toString();}
+
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
     }
 
     render() {
-        return <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>;
+        return <Profile {...this.props}
+                        profile={this.props.profile}
+                        status={this.props.status}
+                        updateStatus={this.props.updateStatus}/>;
     }
 }
 
@@ -47,7 +58,9 @@ class ProfileContainer extends React.Component<PropsType>{
 let mapStateToProps = (state:AppStateType ): MapStatePropsType => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status}
+        status: state.profilePage.status,
+        autorizedUserID: state.auth.userId,
+         isAuth: state.auth.isAuth}
 }
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
