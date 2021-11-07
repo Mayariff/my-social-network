@@ -85,7 +85,7 @@ const mapStateToProps = (state: AppStateType):MapStatePropsType  => {
 })(UsersAPIComponent));*/
 
 export default compose<React.ComponentType>(
-    withAuthRedirect,
+    /*withAuthRedirect,*/
     connect(mapStateToProps,  {
         acceptUnFollow: unFollowSuccess,
         acceptFollow: followSuccess,
