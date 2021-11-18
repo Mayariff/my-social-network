@@ -4,16 +4,22 @@ import {AppStateType} from "../../redux/redux-store";
 import {
     followSuccess,
     unFollowSuccess,
-    getUsers,
     InitialStateType,
     setCurrentPages, setToggleFollowingProgress,
-    userType
+    userType, requestUsers,
 } from "../../redux/User-reducer";
 
 import Users from "./Users";
 import Preloader from "../common/Preloader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/users-selectors";
 
 
 
@@ -30,7 +36,7 @@ export type mapDispatchToPropsType={
     acceptUnFollow: (userID: number) => void
     setCurrentPages: (pageNumber: number)=>void
     setToggleFollowingProgress: (followingInProgress: boolean, userID: number)=> void
-    getUsers: (currentPage: number, pageSize: number)=> void
+    requestUsers: (currentPage: number, pageSize: number)=> void
 }
 export type UsersPropsType = MapStatePropsType & mapDispatchToPropsType
 export  type dataType = {
@@ -41,11 +47,11 @@ export  type dataType = {
 
 class UsersAPIComponent extends React.Component <UsersPropsType> {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.requestUsers(pageNumber, this.props.pageSize);
     }
 
     render() {
@@ -67,12 +73,12 @@ class UsersAPIComponent extends React.Component <UsersPropsType> {
 
 const mapStateToProps = (state: AppStateType):MapStatePropsType  => {
     return {
-        usersPage: state.users,
-        pageSize: state.users.pageSize,
-        totalUsersCount: state.users.totalUsersCount,
-        currentPage: state.users.currentPage,
-        isFetching: state.users.isFetching,
-        followingInProgress:  state.users.followingInProgress
+        usersPage: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 //let withRedirect = withAuthRedirect(UsersAPIComponent)
@@ -91,6 +97,5 @@ export default compose<React.ComponentType>(
         acceptFollow: followSuccess,
         setCurrentPages,
         setToggleFollowingProgress,
-        getUsers,
+        requestUsers,
     }))(UsersAPIComponent)
-

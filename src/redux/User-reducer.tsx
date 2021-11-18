@@ -102,11 +102,11 @@ export const setTotalUsersCount = (totalUsersCount: number) => ({
 export const setToggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching}) as const
 export const setToggleFollowingProgress= (isFetching: boolean, userID: number) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userID}) as const
 
-export const getUsers=(currentPage: number, pageSize: number): ThunkAction<Promise<void>, InitialStateType, unknown, ActionTypes>=>{
+export const  requestUsers=(page: number, pageSize: number): ThunkAction<Promise<void>, InitialStateType, unknown, ActionTypes>=>{
     return async (dispatch: Dispatch<ActionTypes>)=> {
-
         dispatch(setToggleIsFetching(true));
-        usersAPI.getUsers(currentPage, pageSize)
+        dispatch(setCurrentPages(page))
+        usersAPI.getUsers(page, pageSize)
             .then( data => {
                 dispatch(setToggleIsFetching(false));
                 dispatch(setUsers(data.items));

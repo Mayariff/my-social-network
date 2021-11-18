@@ -81,8 +81,6 @@ export type getProfileResponseType={
 
 }
 
-
-
 export const getUserProfile =(userId: number)=>(dispatch: Dispatch<ActionTypes>)=>{
         return usersAPI.getProfile(userId)
             .then((response:AxiosResponse<any>) => {
@@ -98,6 +96,7 @@ export const getStatus =(userId: number)=>(dispatch: Dispatch<ActionTypes>)=>{
 export const updateStatus =(status: string)=>(dispatch: Dispatch<ActionTypes>)=>{
     return ProfileAPI.updateStatus(status)
         .then((response:AxiosResponse<any>) => {
+            debugger
             if(response.data.resultCode===0){
             dispatch(setStatus(status));}
         })
