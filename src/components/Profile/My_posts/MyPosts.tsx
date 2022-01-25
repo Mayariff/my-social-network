@@ -16,36 +16,26 @@ import {TextArea} from "../../common/formControls/formControls";
 }*/
 
 let maxLength = MaxLenghtCreator(30);
-const MyPosts = (props:MyPostsType) => {
+
+const  MyPosts= React.memo((props: MyPostsType) =>{
 
     let postsElement =
-        props.posts.map( (p:any) => <Post id={p.id} key ={p.id}  content={p.content} likescount={p.likescount}/> )
+        props.posts.map((p: any) =>
+            <Post id={p.id} key={p.id} content={p.content} likescount={p.likescount}/>).reverse()
 
-
-/*  let onAddPost = () =>{
-      props.addPost()
-  }*/
-
-    /*let onPostChangeHandler =(e:ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.currentTarget.value
-        props.updateNewPostText(text);
-    }*/
-let    AddNewPost =(values:FormPostType)=>{
+   let AddNewPost = (values: FormPostType) => {
         props.addPost(values.newPostBody)
-}
+    }
 
-    return (
-        <div className={classes.postsBlock}>
+    return (<div className={classes.postsBlock}>
             <h2>My posts</h2>
-            <AddMessageFormReduxForm onSubmit={AddNewPost} />
-
+        <AddMessageFormReduxForm onSubmit={AddNewPost}/>
             <div className={classes.posts}>new post</div>
             {postsElement}
-        </div>
+        </div>)
+})
 
-    )
-}
-type FormPostType={
+type  FormPostType={
     newPostBody:string
 }
 

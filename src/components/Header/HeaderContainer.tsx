@@ -2,10 +2,7 @@ import React from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getAuthUserData, logout, setAuthUserData} from "../../redux/Auth-reduser";
-import {AuthAPI} from "../../API/Api";
-
-
+import {getAuthUserData, logout} from "../../redux/Auth-reduser";
 
 
 export type  MapStatePropsType ={

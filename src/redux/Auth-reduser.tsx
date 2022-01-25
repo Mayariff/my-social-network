@@ -1,4 +1,4 @@
-import {AuthAPI, LoginMeResponseType} from "../API/Api";
+import {AuthAPI} from "../API/Api";
 import {Dispatch} from "redux";
 import {AxiosResponse} from "axios";
 import {stopSubmit} from "redux-form";

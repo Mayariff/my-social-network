@@ -1,12 +1,14 @@
 import {ActionTypes} from "./redux-store";
-import {ProfileAPI, ProfileResponseType, UserResponseType, usersAPI} from "../API/Api";
+import {ProfileAPI, usersAPI} from "../API/Api";
 import {Dispatch} from "redux";
 import {AxiosResponse} from "axios";
 import {ResultCodesEnum} from "./Auth-reduser";
+
 const ADD_POST = 'ADD-POST'
 /*const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';*/
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS ";
+const DELETE_POST= "DELETE-POST"
 
 export type postType = {
     id: number
@@ -65,6 +67,10 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
             return {...state, profile: action.profile}
         case SET_STATUS:
             return {...state, status: action.status}
+        case DELETE_POST:
+            let copy ={...state}
+            let FilteredPosts= copy.posts.filter((p)=> p.id !== action.id ? p: '')
+            return   {...copy, posts: FilteredPosts}
         default:
             return state;
         }
@@ -73,6 +79,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
   /*  export const UpdateNewPostTextAC = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newPostText: text}) as const*/
    export const setUserProfile =(profile: profileType)=> ({type: SET_USER_PROFILE, profile }) as const
 export const setStatus = (status: string)=> ({type: SET_STATUS, status}) as const
+export const deletePost = (id: number)=> ({type: DELETE_POST, id}) as const
 
 export type getProfileResponseType={
 
@@ -96,8 +103,8 @@ export const getStatus =(userId: number)=>(dispatch: Dispatch<ActionTypes>)=>{
 export const updateStatus =(status: string)=>(dispatch: Dispatch<ActionTypes>)=>{
     return ProfileAPI.updateStatus(status)
         .then((response:AxiosResponse<any>) => {
-            debugger
             if(response.data.resultCode===0){
             dispatch(setStatus(status));}
         })
+
 }

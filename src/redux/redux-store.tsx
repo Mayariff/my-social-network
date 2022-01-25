@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {addPostAC, profileReducer, setStatus, setUserProfile} from "./Profile-reducer";
+import {addPostAC, deletePost, profileReducer, setStatus, setUserProfile} from "./Profile-reducer";
 import {AddMessageAC, dialogReducer} from "./Dialog-reducer";
 import {navbarReducer} from "./Navbar-reducer";
 import {userReducer} from "./User-reducer";
@@ -14,7 +14,7 @@ export type ActionTypes = ReturnType<typeof addPostAC> |
     ReturnType<typeof AddMessageAC> |
    /* ReturnType<typeof UpdateNewMessageTextAC>|*/
     ReturnType<typeof setUserProfile>|
-    ReturnType<typeof setStatus>
+    ReturnType<typeof setStatus> | ReturnType<typeof deletePost>
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
