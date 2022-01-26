@@ -1,6 +1,6 @@
 import {ActionTypes} from "./redux-store";
 
-const ADD_MESSAGE = "ADD-MESSAGE";
+const ADD_MESSAGE = "dialogReducer/ADD-MESSAGE";
 /*const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';*/
 
 /*export type dialogPageType = {

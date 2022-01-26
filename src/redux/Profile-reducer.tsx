@@ -5,7 +5,6 @@ import {AxiosResponse} from "axios";
 import {ResultCodesEnum} from "./Auth-reduser";
 
 const ADD_POST = 'ADD-POST'
-/*const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';*/
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS ";
 const DELETE_POST= "DELETE-POST"
@@ -75,7 +74,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
             return state;
         }
     };
-    export const addPostAC = (newPostBody: string) => ({type: ADD_POST, newPostBody}) as const
+    export const addPost = (newPostBody: string) => ({type: ADD_POST, newPostBody}) as const
   /*  export const UpdateNewPostTextAC = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newPostText: text}) as const*/
    export const setUserProfile =(profile: profileType)=> ({type: SET_USER_PROFILE, profile }) as const
 export const setStatus = (status: string)=> ({type: SET_STATUS, status}) as const

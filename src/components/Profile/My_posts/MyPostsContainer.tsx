@@ -1,4 +1,4 @@
-import {addPostAC, postType} from "../../../redux/Profile-reducer";
+import {addPost, postType} from "../../../redux/Profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
@@ -31,7 +31,7 @@ const mapDispatchToProps =(dispatch:Dispatch):mapDispatchToPropsType=>{
             dispatch(action)
         },*/
         addPost: (newPostBody:string)=>{
-           dispatch(addPostAC(newPostBody));
+           dispatch(addPost(newPostBody));
         }
     }
 }

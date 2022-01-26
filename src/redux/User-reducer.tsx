@@ -5,13 +5,13 @@ import {ThunkAction} from "redux-thunk";
 
 
 
-const FOLLOW = 'FOLLOW'
-const UN_FOLLOW = 'UN-FOLLOW';
-const SET_USERS = "SET_USERS";
-const SET_CURRENT_PAGES = "SET_CURRENT_PAGES";
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
+const FOLLOW = 'userReducer/FOLLOW'
+const UN_FOLLOW = 'userReducer/UN-FOLLOW';
+const SET_USERS = "userReducer/SET_USERS";
+const SET_CURRENT_PAGES = "userReducer/SET_CURRENT_PAGES";
+const SET_TOTAL_USERS_COUNT = "userReducer/SET_TOTAL_USERS_COUNT";
+const TOGGLE_IS_FETCHING = "userReducer/TOGGLE_IS_FETCHING";
+const TOGGLE_IS_FOLLOWING_PROGRESS = "userReducer/TOGGLE_IS_FOLLOWING_PROGRESS";
 export type userType = {
     id: number
     photos: {
