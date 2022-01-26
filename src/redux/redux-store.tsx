@@ -10,9 +10,7 @@ import {appReducer, initialActionTypes} from "./App-reduser";
 
 
 export type ActionTypes = ReturnType<typeof addPost> |
-  /*  ReturnType<typeof UpdateNewPostTextAC> |*/
     ReturnType<typeof AddMessageAC> |
-   /* ReturnType<typeof UpdateNewMessageTextAC>|*/
     ReturnType<typeof setUserProfile>|
     ReturnType<typeof setStatus> | ReturnType<typeof deletePost>
 
@@ -32,7 +30,6 @@ let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 export default store;
 
 export type RootActionTypes = ActionTypes| AuthActionTypes |initialActionTypes
-
 export type AppThunk= ThunkAction<void, AppStateType, unknown, RootActionTypes>
 
 

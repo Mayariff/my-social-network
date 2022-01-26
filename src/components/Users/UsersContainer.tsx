@@ -20,6 +20,7 @@ import {
     getTotalUsersCount,
     getUsers
 } from "../../redux/users-selectors";
+import {Pagenator} from "../common/Pagenator/Pagenator";
 
 
 
@@ -47,21 +48,24 @@ export  type dataType = {
 
 class UsersAPIComponent extends React.Component <UsersPropsType> {
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+        let {currentPage, pageSize} = this.props
+        this.props.requestUsers(currentPage, pageSize);
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize);
+        let {pageSize} = this.props
+        this.props.requestUsers(pageNumber,pageSize);
     }
 
     render() {
         return <>
             {this.props.isFetching ? <Preloader/>: null}
+            <Pagenator totalUsersCount={this.props.usersPage.totalUsersCount}
+                       pageSize={this.props.usersPage.pageSize}
+                       currentPage={this.props.currentPage}
+                       onPageChanged={this.onPageChanged} />
             <Users
-            totalUsersCount={this.props.usersPage.totalUsersCount}
-            pageSize={this.props.usersPage.pageSize}
             users={this.props.usersPage.users}
-            currentPage={this.props.currentPage}
             onPageChanged={this.onPageChanged}
             unfollow={this.props.acceptUnFollow}
             follow={this.props.acceptFollow}
@@ -81,17 +85,8 @@ const mapStateToProps = (state: AppStateType):MapStatePropsType  => {
         followingInProgress: getFollowingInProgress(state)
     }
 }
-//let withRedirect = withAuthRedirect(UsersAPIComponent)
-
-/*export default withAuthRedirect(
-    connect(mapStateToProps,  {
-    acceptUnFollow: unFollowSuccess, acceptFollow: followSuccess, setCurrentPages,
-    setToggleFollowingProgress,
-    getUsers,
-})(UsersAPIComponent));*/
 
 export default compose<React.ComponentType>(
-    /*withAuthRedirect,*/
     connect(mapStateToProps,  {
         acceptUnFollow: unFollowSuccess,
         acceptFollow: followSuccess,

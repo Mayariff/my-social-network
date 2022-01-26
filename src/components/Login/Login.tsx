@@ -20,7 +20,6 @@ export type FormDataType={
     rememberMe: boolean
 }
 
-/*type loginFormPropertisType = 'email'|  'password' |'rememberMe'*/
 export type LoginFormvaluesType = keyof FormDataType
 
 const Login: React.FC<mapStateToPropsType & mapDispatchPropsType> = (props) => {

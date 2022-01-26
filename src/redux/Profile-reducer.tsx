@@ -1,7 +1,6 @@
 import {ActionTypes} from "./redux-store";
 import {ProfileAPI, usersAPI} from "../API/Api";
 import {Dispatch} from "redux";
-import {AxiosResponse} from "axios";
 import {ResultCodesEnum} from "./Auth-reduser";
 
 const ADD_POST = 'ADD-POST'
@@ -15,7 +14,6 @@ export type postType = {
     likescount: number
 }
 export type profileType = {
-    aboutMe: string
     contacts: {
         facebook: string
         website: string
@@ -31,6 +29,7 @@ export type profileType = {
         userId: number
     photos: {
         small?: string
+        URL?: string| null
         large?: string }
 }
 export type InitialStateType = typeof initialState
@@ -87,23 +86,16 @@ export type getProfileResponseType={
 
 }
 
-export const getUserProfile =(userId: number)=>(dispatch: Dispatch<ActionTypes>)=>{
-        return usersAPI.getProfile(userId)
-            .then((response:AxiosResponse<any>) => {
+export const getUserProfile =(userId: number)=>async (dispatch: Dispatch<ActionTypes>)=>{
+        let response = await  usersAPI.getProfile(userId)
            dispatch(setUserProfile(response.data));
-        })
 }
-export const getStatus =(userId: number)=>(dispatch: Dispatch<ActionTypes>)=>{
-    return ProfileAPI.getStatus(userId)
-        .then((response:AxiosResponse<any>) => {
+export const getStatus =(userId: number)=> async (dispatch: Dispatch<ActionTypes>)=>{
+    let response = await  ProfileAPI.getStatus(userId)
             dispatch(setStatus(response.data));
-        })
 }
-export const updateStatus =(status: string)=>(dispatch: Dispatch<ActionTypes>)=>{
-    return ProfileAPI.updateStatus(status)
-        .then((response:AxiosResponse<any>) => {
+export const updateStatus =(status: string)=>async (dispatch: Dispatch<ActionTypes>)=>{
+    let response= await ProfileAPI.updateStatus(status)
             if(response.data.resultCode===0){
             dispatch(setStatus(status));}
-        })
-
 }

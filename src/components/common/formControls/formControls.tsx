@@ -5,41 +5,8 @@ import {Field, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form";
 import {LoginFormvaluesType} from "../../Login/Login";
 
 
-/*export  const TextArea= ({input, meta,...props}:any)=> {
-    const hasError =meta.touched && meta.error;
-    return (
-        <>
-            <div className={hasError ? `${s.formControl} ${s.error}` : `${s.formControl}`}>
-                <div>
-                    <textarea {...input} {...props}/>
-                </div>
-                {hasError && <span>ERROR</span>}
-            </div>
-        </>
-
-    )
-}*/
-/*export  const Input= ({input, meta,...props}:any)=> {
-    const hasError =meta.touched && meta.error;
-    return (
-        <>
-            <div className={hasError ? `${s.formControl} ${s.error}` : `${s.formControl}`}>
-                <div>
-                    <input {...input} {...props}/>
-                </div>
-                {hasError && <span>ERROR</span>}
-            </div>
-        </>
-
-    )
-
-}*/
-
-
 type FormControlType = {
     meta: WrappedFieldMetaProps
-    /*touched:boolean
-    error: string*/
 }
 
 export const FormControl: React.FC<FormControlType> = ({meta: {touched, error}, children}) => {
@@ -53,9 +20,7 @@ export const FormControl: React.FC<FormControlType> = ({meta: {touched, error}, 
     )
 }
 
-
 export const TextArea: React.FC<WrappedFieldProps> = (props) => {
-    /*const {input, meta, child,...restProps} =props;*/
     const {input, meta, ...restProps} = props;
     return (<FormControl {...props}>
             <textarea {...input} {...restProps}/>
@@ -72,8 +37,6 @@ export const Input: React.FC<WrappedFieldProps> = (props) => {
 
     )
 }
-
-
 
 export function createField(placeholder: string| undefined,
                             name: LoginFormvaluesType,

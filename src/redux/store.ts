@@ -2,9 +2,6 @@ import {addPost} from "./Profile-reducer";
 import {AddMessageAC, dialogReducer} from "./Dialog-reducer";
 import {navbarReducer} from "./Navbar-reducer";
 
-
-
-
 type postType = {
     id: number
     content: string
@@ -37,7 +34,6 @@ export type profilePageType = {
 export type navbarBlockType = {
     friends: Array<friendType>
 }
-
 
 export type stateType = {
     profilePage: profilePageType

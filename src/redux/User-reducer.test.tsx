@@ -43,14 +43,14 @@ afterEach(()=>{
     }
 })
 
-test('Testing FOLLOW: user should be follow to friends ', ()=>{
+test('Testing FOLLOW: user should be follow to friends', ()=>{
     let UserID = 1
     let action = followSuccess(UserID)
     let newState = userReducer (stateforTest, action)
 
     expect(newState.users[0].followed).toBe(true)
 })
-test('Testing UN_FOLLOW: user should be follow to friends ', ()=>{
+test('Testing UN_FOLLOW: user should be follow to friends', ()=>{
     let UserID = 9
     let action = unFollowSuccess(UserID)
     let newState = userReducer (stateforTest, action)

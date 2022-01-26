@@ -34,7 +34,7 @@ afterEach(()=>{
     }
 })
 
-test('Testing ADD_POST: post should be added ', ()=>{
+test('Testing ADD_POST: post should be added', ()=>{
     let NewPostName ='POST NAME FOR NEW POST'
     let action = addPost(NewPostName)
     let newState = profileReducer(stateforTest, action)
@@ -49,7 +49,6 @@ test('Testing ADD_POST: post should be added ', ()=>{
 })
 test('Testing SET_USER_PROFILE: profile should be seated in state', ()=>{
     let NewProfile: profileType = {
-        aboutMe: 'I am test',
         contacts: {
             facebook: 'facebook',
             website: 'website',
@@ -65,6 +64,7 @@ test('Testing SET_USER_PROFILE: profile should be seated in state', ()=>{
         userId: 999,
         photos: {
             small: undefined,
+            URL: undefined,
             large: undefined,}
     }
     let action = setUserProfile(NewProfile)
@@ -72,7 +72,7 @@ test('Testing SET_USER_PROFILE: profile should be seated in state', ()=>{
 
     expect(newState.profile).toBeDefined()
     expect(newState.profile).not.toEqual({})
-    expect(newState.profile.aboutMe).toBe('I am test')
+    expect(newState.profile.fullName).toBe('TEST')
 })
 test('Testing SET_STATUS: status should be changed',()=>{
     let NewStatus = 'NEW STATUS FOR TEST'

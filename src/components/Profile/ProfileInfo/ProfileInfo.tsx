@@ -11,26 +11,19 @@ type propsType = {
     updateStatus: (status: string) => void
 }
 
-const ProfileInfo = (props: propsType) => {
+const ProfileInfo = ({profile, status, updateStatus}: propsType) => {
 
-    if (!props.profile.userId) {
+    if (!profile.userId) {
         return <Preloader/>
     }
     return (
         <div>
-            {/*  <div className={classes.containers}>
-
-                <img
-                    src="https://filedn.com/ltOdFv1aqz1YIFhf4gTY8D7/ingus-info/BLOGS/Photography-stocks3/stock-photography-slider.jpg"
-                     alt="gory"/>
-            </div>*/}
             <div className={classes.descriptionBlock}>
-                <img src={props.profile.photos.large ? props.profile.photos.large : Ava} alt={"large Avatar"}/>
-             {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-                <span>{props.profile.aboutMe}</span>
+                <img src={profile.photos.large ? profile.photos.large : Ava} alt={"large Avatar"}/>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>
-    )
+
+    );
 }
 export default ProfileInfo;

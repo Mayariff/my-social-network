@@ -55,8 +55,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     initialized: state.app.initialized
 })
 
-export default compose(
-
-    connect(mapStateToProps, {initializeApp}))(App);
+export default compose(connect(mapStateToProps, {initializeApp}))(App);
 
 
