@@ -4,7 +4,7 @@ import Nav from "./components/Nav/Nav";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, HashRouter, Route} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
@@ -28,7 +28,6 @@ class App extends React.Component<any,any> {
     render() {
         if(!this.props.initialized){return <Preloader />}
         return (
-            <BrowserRouter>
                 <div className='app-w'>
                     <HeaderContainer/>
                     <Nav/>
@@ -44,7 +43,6 @@ class App extends React.Component<any,any> {
                         <Route path='/login' render={() => <LoginPage/>}/>
                     </div>
                 </div>
-            </BrowserRouter>
         );
     }
 }
@@ -58,11 +56,11 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 
 let AppContainer = compose(connect(mapStateToProps, {initializeApp}))(App);
 let MainApp= ()=>{
-    return (<BrowserRouter>
+    return (<HashRouter basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
             <AppContainer />
         </Provider>
-    </BrowserRouter>)
+    </HashRouter>)
 }
 export default MainApp;
 
