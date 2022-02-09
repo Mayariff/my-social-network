@@ -1,3 +1,16 @@
 .selectedPage{
     font-weight: bolder;
 }
+
+.paginator{
+    margin:10px;
+    width:600px;
+}
+.page{
+    display: inline-block;
+    width: 30px;
+}
+
+.bottomDisabled {
+    color: white
+}

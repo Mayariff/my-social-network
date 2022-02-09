@@ -32,6 +32,6 @@ export const initializeAC = () => ({type: INITIALIZE_SUCCESS}) as const
 
 export const initializeApp = ():AppThunk  =>(dispatch) => {
    let promise = dispatch(getAuthUserData())
-    Promise.all([promise])
-        .then(()=>{dispatch(initializeAC())})
+   Promise.all([promise])
+       .then(()=>{dispatch(initializeAC())})
 }

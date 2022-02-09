@@ -60,7 +60,7 @@ class UsersAPIComponent extends React.Component <UsersPropsType> {
     render() {
         return <>
             {this.props.isFetching ? <Preloader/>: null}
-            <Pagenator totalUsersCount={this.props.usersPage.totalUsersCount}
+            <Pagenator totalItemsCount={this.props.usersPage.totalUsersCount}
                        pageSize={this.props.usersPage.pageSize}
                        currentPage={this.props.currentPage}
                        onPageChanged={this.onPageChanged} />

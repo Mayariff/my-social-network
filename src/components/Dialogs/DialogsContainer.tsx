@@ -8,6 +8,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import React from "react";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {withSuspense} from "../../hoc/withSuspense";
 
 
 
