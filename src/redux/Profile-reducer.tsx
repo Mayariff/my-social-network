@@ -1,17 +1,20 @@
-import {ActionTypes} from "./redux-store";
+import {ActionTypes, AppStateType, AppThunk} from "./redux-store";
 import {ProfileAPI, usersAPI} from "../API/Api";
 import {Dispatch} from "redux";
 import {ResultCodesEnum} from "./Auth-reduser";
+import {FormDataType} from "../components/Profile/ProfileInfo/ProfileInfo";
+import { stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS ";
-const DELETE_POST= "DELETE-POST"
+const DELETE_POST= "DELETE-POST";
+const SAVE_PHOTO_SUCCESS= 'SAVE_PHOTO_SUCCESS';
 
 export type postType = {
     id: number
     content: string
-    likescount: number
+    likesCount: number
 }
 export type profileType = {
     contacts: {
@@ -31,13 +34,14 @@ export type profileType = {
         small?: string
         URL?: string| null
         large?: string }
+    aboutMe?:string
 }
 export type InitialStateType = typeof initialState
 let initialState = {
     posts: [
-        {id: 1, content: 'Hi? how are you?', likescount: 3},
-        {id: 2, content: 'It\'s my first  post', likescount: 11},
-        {id: 3, content: 'lalala', likescount: 0},
+        {id: 1, content: 'Hi? how are you?', likesCount: 3},
+        {id: 2, content: 'It\'s my first  post', likesCount: 11},
+        {id: 3, content: 'laLaLa', likesCount: 0},
     ] as Array<postType>,
     /*newPostText: "",*/
     profile:{} as profileType,
@@ -51,7 +55,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
             let newPost: postType = {
                 id: 15,
                 content: action.newPostBody,
-                likescount: 0
+                likesCount: 0
             };
             return {
                     ...state,
@@ -69,6 +73,8 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
             let copy ={...state}
             let FilteredPosts= copy.posts.filter((p)=> p.id !== action.id ? p: '')
             return   {...copy, posts: FilteredPosts}
+        case SAVE_PHOTO_SUCCESS:
+            return   {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state;
         }
@@ -78,6 +84,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
    export const setUserProfile =(profile: profileType)=> ({type: SET_USER_PROFILE, profile }) as const
 export const setStatus = (status: string)=> ({type: SET_STATUS, status}) as const
 export const deletePost = (id: number)=> ({type: DELETE_POST, id}) as const
+export const savePhotoSuccess = (photos: any)=> ({type: SAVE_PHOTO_SUCCESS, photos}) as const
 
 export type getProfileResponseType={
 
@@ -99,3 +106,23 @@ export const updateStatus =(status: string)=>async (dispatch: Dispatch<ActionTyp
             if(response.data.resultCode===0){
             dispatch(setStatus(status));}
 }
+
+export const savePhoto =(file: any)=>async (dispatch: Dispatch<ActionTypes>)=>{
+    let response= await ProfileAPI.savePhoto(file)
+    if(response.data.resultCode===0){
+        dispatch(savePhotoSuccess(response.data.data.photos));}
+}
+
+export const saveProfile =(formData: FormDataType): AppThunk =>async (dispatch, getState:()=>AppStateType) =>{
+
+    const ID= getState().auth.userId
+
+    let response= await ProfileAPI.saveProfile(formData)
+    if(response.data.resultCode===0)  {
+        ID && await  usersAPI.getProfile(ID)
+    }else {
+       //let message = response.messages.length > 0 ? response.messages[0] : "Some error";
+        dispatch(stopSubmit('edit-profile', {_error: response.data.message[0]}));
+    }
+
+   }

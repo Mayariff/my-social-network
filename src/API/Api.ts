@@ -1,6 +1,7 @@
 import axios from "axios";
 import {MeResponseType, ResultCodesEnum} from "../redux/Auth-reduser";
 import {userType} from "../redux/User-reducer";
+import {FormDataType} from "../components/Profile/ProfileInfo/ProfileInfo";
 
 
 
@@ -64,6 +65,14 @@ export const ProfileAPI = {
     },
     updateStatus(status: string){
         return instance.put('profile/status', {status:status});
+    },
+    savePhoto(photo:any){
+        const formData = new FormData()
+        formData.append('image',photo)
+        return instance.put('profile/photo',formData ,{headers:{'Content-Type': "multipart/form-data"}})
+    },
+    saveProfile(formData: FormDataType){
+        return instance.put('profile', formData)
     }
 }
 export  type LoginMeResponseType ={

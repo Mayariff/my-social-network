@@ -1,18 +1,18 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
-import {addPost, deletePost, profileReducer, setStatus, setUserProfile} from "./Profile-reducer";
+import {addPost, deletePost, profileReducer, savePhotoSuccess, setStatus, setUserProfile} from "./Profile-reducer";
 import {AddMessageAC, dialogReducer} from "./Dialog-reducer";
 import {navbarReducer} from "./Navbar-reducer";
 import {userReducer} from "./User-reducer";
 import {AuthActionTypes, authReducer} from "./Auth-reduser";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
-import { reducer as formReducer } from 'redux-form'
+import {FormAction, reducer as formReducer} from 'redux-form'
 import {appReducer, initialActionTypes} from "./App-reduser";
 
 
 export type ActionTypes = ReturnType<typeof addPost> |
     ReturnType<typeof AddMessageAC> |
     ReturnType<typeof setUserProfile>|
-    ReturnType<typeof setStatus> | ReturnType<typeof deletePost>
+    ReturnType<typeof setStatus> | ReturnType<typeof deletePost> | ReturnType<typeof savePhotoSuccess>
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,

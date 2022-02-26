@@ -14,9 +14,9 @@ let stateforTest : InitialStateType;
 beforeEach(()=>{
     stateforTest= {
         posts: [
-            {id: 1, content: 'Hi? how are you?', likescount: 3},
-            {id: 2, content: 'It\'s my first  post', likescount: 11},
-            {id: 3, content: 'lalala', likescount: 0},
+            {id: 1, content: 'Hi? how are you?', likesCount: 3},
+            {id: 2, content: 'It\'s my first  post', likesCount: 11},
+            {id: 3, content: 'lalala', likesCount: 0},
         ],
         profile: {} as profileType,
         status: "Hi, world"
@@ -25,9 +25,9 @@ beforeEach(()=>{
 afterEach(()=>{
     stateforTest= {
         posts: [
-            {id: 1, content: 'Hi? how are you?', likescount: 3},
-            {id: 2, content: 'It\'s my first  post', likescount: 11},
-            {id: 3, content: 'lalala', likescount: 0},
+            {id: 1, content: 'Hi? how are you?', likesCount: 3},
+            {id: 2, content: 'It\'s my first  post', likesCount: 11},
+            {id: 3, content: 'lalala', likesCount: 0},
         ],
         profile: {} as profileType,
         status: "Hi, world"

@@ -24,6 +24,8 @@ export type LoginFormvaluesType = keyof FormDataType
 
 const Login: React.FC<mapStateToPropsType & mapDispatchPropsType> = (props) => {
     const  onSubmit=(formData: FormDataType)=>{
+        console.log(formData)
+        debugger
         props.login(formData.email, formData.password, formData.rememberMe)
     }
 

@@ -21,7 +21,7 @@ const  MyPosts= React.memo((props: MyPostsType) =>{
 
     let postsElement =
         props.posts.map((p: any) =>
-            <Post id={p.id} key={p.id} content={p.content} likescount={p.likescount}/>).reverse()
+            <Post id={p.id} key={p.id} content={p.content} likesCount={p.likescount}/>).reverse()
 
    let AddNewPost = (values: FormPostType) => {
         props.addPost(values.newPostBody)
