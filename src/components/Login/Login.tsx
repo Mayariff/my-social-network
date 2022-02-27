@@ -9,24 +9,24 @@ import {AppStateType} from "../../redux/redux-store";
 
 type mapStateToPropsType = {
     isAuth: boolean
+    captchaUrl: string |null
 }
 
 type mapDispatchPropsType={
-    login:(email:string, password:string, rememberMe:boolean)=>void
+    login:(email:string, password:string, rememberMe:boolean, captcha:string|null)=>void
 }
 export type FormDataType={
     email: string
     password: string
     rememberMe: boolean
+    captcha:string|null
 }
 
 export type LoginFormvaluesType = keyof FormDataType
-
 const Login: React.FC<mapStateToPropsType & mapDispatchPropsType> = (props) => {
     const  onSubmit=(formData: FormDataType)=>{
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
         console.log(formData)
-        debugger
-        props.login(formData.email, formData.password, formData.rememberMe)
     }
 
     if (props.isAuth){
@@ -35,13 +35,14 @@ const Login: React.FC<mapStateToPropsType & mapDispatchPropsType> = (props) => {
     return (
         <div>
             <h1>LOGIN</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm onSubmit={onSubmit} captcha={props.captchaUrl}/>
         </div>
     );
 };
 
 const mapStateToProps= (state:AppStateType):mapStateToPropsType=>({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 })
 
 export default connect(mapStateToProps,{login})(Login);

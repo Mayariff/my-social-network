@@ -87,10 +87,17 @@ export const AuthAPI ={
     me(){
         return instance.get<MeResponseType>(`auth/me`).then(res=>res.data);;
     },
-    login(email: string, password: string, rememberMe:boolean = false){
-        return instance.post<LoginMeResponseType>(`auth/login`,{email, password, rememberMe }).then(res=>res.data);
+    login(email: string, password: string, rememberMe:boolean = false, captcha:string|null=null){
+        return instance.post<LoginMeResponseType>(`auth/login`,{email, password, rememberMe,captcha }).then(res=>res.data);
     },
     logout(){
         return instance.delete<MeResponseType>(`auth/login`)
     }
+}
+
+export const securityAPI ={
+    getCaptcha(){
+        return instance.get('security/get-captcha-url')
+    }
+
 }

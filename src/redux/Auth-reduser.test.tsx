@@ -9,7 +9,8 @@ beforeEach(()=>{
         userId: null,
         email: null,
         login: null,
-        isAuth: false
+        isAuth: false,
+        captchaUrl: null
     }
 })
 afterEach(()=>{
@@ -17,7 +18,8 @@ afterEach(()=>{
         userId: null,
         email: null,
         login: null,
-        isAuth: false
+        isAuth: false,
+        captchaUrl: null,
     }
 })
 
