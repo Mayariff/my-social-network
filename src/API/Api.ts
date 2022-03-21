@@ -82,6 +82,11 @@ export  type LoginMeResponseType ={
     resultCode: ResultCodesEnum
     messages: Array<string>
 }
+export  type saveProfileResponseType ={
+    payload : ProfileResponseType
+    resultCode: ResultCodesEnum
+    messages: Array<string>
+}
 
 export const AuthAPI ={
     me(){

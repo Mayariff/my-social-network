@@ -1,5 +1,5 @@
 import React from "react";
-import classes from './My_posts.module.css'
+import s from './My_posts.module.css'
 import Post from "./Post/Post";
 import {MyPostsType} from "./MyPostsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
@@ -27,10 +27,9 @@ const  MyPosts= React.memo((props: MyPostsType) =>{
         props.addPost(values.newPostBody)
     }
 
-    return (<div className={classes.postsBlock}>
-            <h2>My posts</h2>
+    return (<div className={s.postContainer}>
+            <h2>Posts</h2>
         <AddMessageFormReduxForm onSubmit={AddNewPost}/>
-            <div className={classes.posts}>new post</div>
             {postsElement}
         </div>)
 })
@@ -41,13 +40,11 @@ type  FormPostType={
 
 const AddPostForm=(props:InjectedFormProps<FormPostType>)=>{
     return(
-    <form onSubmit={props.handleSubmit}>
-        <Field component={TextArea} name={'newPostBody'} placeholder={'Enter your message'}
+    <form onSubmit={props.handleSubmit} className={s.widthTextAria}>
+        <Field component={TextArea} name={'newPostBody'} placeholder={'Enter new post'}
                validate={[RequiredField,maxLength]}/>
-    <div>
-        <button>Add post</button>
-        <button>Remove</button>
-    </div>
+
+        <button className={s.addPostBtn}>Add post</button>
    </form>)
 }
 export const AddMessageFormReduxForm = reduxForm<FormPostType>({

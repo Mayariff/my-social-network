@@ -1,16 +1,10 @@
-import {
-    AddMessageAC,
-    InitialStateType,
-} from "../../redux/Dialog-reducer";
+import {AddMessageAC, InitialStateType,} from "../../redux/Dialog-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import React from "react";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import {withSuspense} from "../../hoc/withSuspense";
-
-
 
 
 type MapStatePropsType={

@@ -5,7 +5,7 @@ import {navbarReducer} from "./Navbar-reducer";
 import {userReducer} from "./User-reducer";
 import {AuthActionTypes, authReducer} from "./Auth-reduser";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
-import {FormAction, reducer as formReducer} from 'redux-form'
+import {reducer as formReducer} from 'redux-form'
 import {appReducer, initialActionTypes} from "./App-reduser";
 
 

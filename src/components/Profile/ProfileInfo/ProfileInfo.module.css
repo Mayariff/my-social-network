@@ -1,11 +1,94 @@
 .descriptionBlock {
- margin: 20px auto ;
-
+   display: flex;
+}
+.photoCard{
+    background-color: #fff;
+    width: 400px;
+    height: 500px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 20px;
 }
 
-.containers img{
-    width:100%;
-}
 .mainPhoto{
-    width: 40%;
+    width: 360px;
+    height: 360px;
+    outline: 1px solid black;
+}
+.input{
+    display: none;
+}
+.btnChangeAvatar{
+    border: 2px solid #5da2d5;
+    color: #5da2d5;
+    text-decoration: underline;
+    padding: 4px 12px 8px;
+    position: absolute;
+    top: 390px;
+    right: 20px;
+}
+.status{
+    position: relative;
+    top: 40px;
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    color: #00488f;
+    font-size: 20px;
+}
+.statusInput {
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    color: #00488f;
+    font-size: 20px;
+}
+
+.infoAboutProfile{
+    box-sizing: border-box;
+    width: 440px;
+    padding: 60px 50px 0 80px;
+    position: relative;
+}
+
+.EditButton{
+    border: 2px solid white;
+    color: white;
+    font-size: 16px;
+    letter-spacing: 0.1rem;
+    background-color: transparent;
+    text-decoration: underline;
+    padding: 4px 12px 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.Blue{
+    border-color: #5da2d5;
+    color: #5da2d5;
+    letter-spacing: normal;
+}
+
+.fieldName{
+    font-weight: bolder;
+    color:  #00488f;
+}
+
+.contacts{
+    margin-left: 30px ;
+}
+.fieldContactName{
+    color:  #00488f;
+}
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    border-bottom: 1px dotted #00488f;
+}
+.checkbox{
+    justify-content: left;
+}
+
+.Contact{
+    margin: 10px 0;
 }

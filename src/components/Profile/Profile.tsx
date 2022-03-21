@@ -16,6 +16,7 @@ const Profile =(props:propsType) =>{
 
     return(
         <div >
+            <h1>Profile</h1>
             <ProfileInfo  profile={props.profile}
                           status={props.status}
                           updateStatus={props.updateStatus}

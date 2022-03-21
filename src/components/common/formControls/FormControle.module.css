@@ -4,10 +4,39 @@
 }
 .formControl.error span{
     color: red;
+    position: absolute;
+    right: 5px;
 }
 
 .formSMRError{
+    position: absolute;
     border: 2px solid red;
-    padding: 5px;
+    padding: 4px 6px;
     color: red;
+    top: 4px;
+    font-size: 13px;
+    font-weight: bolder;
 }
+
+select, textarea,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"]  {
+    height: 40px;
+    line-height: 46px;
+    padding: 0 20px;
+    outline: none;
+    font-size: 15px;
+    color: #808080;
+    max-width: 100%;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    background-color: #fff;
+    font-weight: 400;
+    opacity: 1;
+    border: 1px solid #e0e0e0;
+}
+

@@ -119,10 +119,10 @@ export const saveProfile =(formData: FormDataType): AppThunk =>async (dispatch, 
 
     let response= await ProfileAPI.saveProfile(formData)
     if(response.data.resultCode===0)  {
-        ID && await  usersAPI.getProfile(ID)
-    }else {
-       //let message = response.messages.length > 0 ? response.messages[0] : "Some error";
-        dispatch(stopSubmit('edit-profile', {_error: response.data.message[0]}));
-    }
-
+        //ID && await  usersAPI.getProfile(ID)
+        ID && dispatch(getUserProfile(ID))
+     }else {
+        //let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+       dispatch(stopSubmit('edit-profile', {_error:  'Invalid url format'}))
    }
+}

@@ -1,8 +1,10 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
+import s from './ProfileInfo.module.css'
 
 type propsType={
     status: string
     updateStatus: (status: string)=> void
+    isOwner?: boolean
 }
 
  export const ProfileStatusWithHooks = (props:propsType ) => {
@@ -15,7 +17,7 @@ type propsType={
      },[props.status])
 
      const ActiveMode=()=>{
-         setEditMode(true)
+         props.isOwner &&  setEditMode(true)
      }
      const DeactiveMode=()=>{
          setEditMode(false)
@@ -27,15 +29,12 @@ type propsType={
      }
 
     return (
-        <div>
+        <div className={s.status}>
             {!editMode &&
-            <div>
-                <span onDoubleClick={ActiveMode}> {status || '----'} </span>
-            </div>}
-            {editMode && <div>
+                <span onDoubleClick={ActiveMode}> {status || '----'} </span>}
+            {editMode &&  props.isOwner &&
                 <input onBlur={DeactiveMode} onChange={onStatusChange}
-                    autoFocus={true} value={status}/>
-            </div>
+                    autoFocus={true} value={status} className={s.statusInput}/>
             }
         </div>
     );

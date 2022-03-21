@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {v1} from "uuid";
 import s from "./Pagenator.module.css";
+import cn from 'classnames'
 
 type propsType = {
     totalItemsCount: number
@@ -31,7 +32,9 @@ export const Pagenator = ({totalItemsCount, pageSize, currentPage, onPageChanged
                     className={prevDisabledCondition ? s.bottomDisabled:'' } disabled={prevDisabledCondition}> PREV </button>
             {
                 pages.filter(p => p >= leftPortionNumber && p <= rightPortionNumber)
-                    .map(p => <span key={v1()} className={currentPage === p ? `${s.page} ${s.selectedPage}`: s.page}
+                    .map(p => <span key={v1()}
+                                   /* className={currentPage === p ? `${s.page} ${s.selectedPage}`: s.page}*/
+                                        className={cn({[s.selectedPage]:currentPage === p }, s.page)}
                                     onClick={() => {
                                         onPageChanged(p)
                                     }}>

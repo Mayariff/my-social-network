@@ -4,6 +4,7 @@ import {InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType, ProfileFormvaluesType} from "./ProfileInfo/ProfileInfo";
 import {profileType} from "../../redux/Profile-reducer";
 import s from "../common/formControls/FormControle.module.css";
+import style from './ProfileInfo/ProfileInfo.module.css'
 
 type ProfileDataType = {
     onSubmit: (formData: FormDataType) => void;
@@ -12,27 +13,33 @@ type ProfileDataType = {
 const ProfileForm: React.FC<InjectedFormProps<FormDataType, ProfileDataType> & ProfileDataType> =
     ({handleSubmit, profile,error})=> {
 
-        return <form onSubmit={handleSubmit}>
+
+        return <form onSubmit={handleSubmit} className={style.AboutMe}>
         <div>
-            <button>save</button>
+            <button className={`${style.EditButton} ${style.Blue}`} >Save</button>
         </div>
             {error && <div className={s.formSMRError}>
                 {error}
             </div>}
-        <div>Full Name:
+        <div className={style.row}>
+            <span className={style.fieldName}>Full Name: </span>
             {createField("Full Name", "fullName", [], Input)}</div>
-        <div>Looking for are job:
+        <div className={`${style.row} ${style.checkbox}`}>
+            <span className={style.fieldName}>Looking for are job</span>:
             {createField( '','lookingForaJob', [], Input, {text: 'lookingForaJob', type: "checkbox"})}</div>
-        <div>My skills :
-            {createField("Skills", "lookingForAJobDescription", [], TextArea)}
+        <div className={style.row}>
+            <span className={style.fieldName}>My skills:</span>
+            {createField("My Skills", "lookingForAJobDescription", [], Input)}
         </div>
-            <div>My skills :
-                {createField("About me", "aboutMe", [], TextArea)}
+            <div className={style.row}>
+                <span className={style.fieldName}>About me:</span>
+                {createField("About me", "aboutMe", [], Input)}
             </div>
-            <div> Contacts:
+            <div>
+                <div className={`${style.fieldName}  ${s.Contact}`}>Contacts:</div>
                 {Object.keys(profile.contacts).map(key => {
-                    return <div key={key}>
-                        {key} : {createField(key, `contacts.${key}` as ProfileFormvaluesType, [], Input)}
+                    return <div key={key} className={`${style.contacts} ${style.row}`} >
+                        <span className={style.fieldContactName}>{key}:</span> {createField(key, `contacts.${key}` as ProfileFormvaluesType, [], Input)}
                     </div>
                 })}
             </div>

@@ -4,7 +4,7 @@ import Nav from "./components/Nav/Nav";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {BrowserRouter, HashRouter, Route} from "react-router-dom";
+import {HashRouter, Redirect, Route} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
@@ -24,7 +24,16 @@ class App extends React.Component<any,any> {
 
     componentDidMount() {
         this.props.initializeApp()
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('Unhandled rejection (promise: ', event.promise, ', reason: ', event.reason, ').');
+        });
     }
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', function(event) {
+            console.error('Unhandled rejection (promise: ', event.promise, ', reason: ', event.reason, ').');
+        });
+    }
+
     render() {
         if(!this.props.initialized){return <Preloader />}
         return (
@@ -32,6 +41,8 @@ class App extends React.Component<any,any> {
                     <HeaderContainer/>
                     <Nav/>
                     <div className='app-wrapper-content'>
+                        <Route exact path='/' render={() => <Redirect  to={'/profile'} />
+                        }/>
                         <Route path='/dialogs'
                                   render={() => <DialogsContainer/>}/>
                         <Route path='/profile/:userId?' render={() => <ProfileContainer/>

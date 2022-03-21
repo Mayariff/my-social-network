@@ -1,11 +1,18 @@
-.postsBlock {
-    padding: 10px;
+.postContainer{
+    margin-top: 50px;
 }
 
-.posts {
-    margin-top: 10px;
+.widthTextAria{
+    width: 60%;
+    position: relative;
 }
 
-h2 {
-    color: darkslategray;
+.addPostBtn{
+    margin: 8px 0 20px 2px;
+    border: 2px solid #5da2d5;
+    color: #5da2d5;
+    font-size: 16px;
+    background-color: transparent;
+    text-decoration: underline;
+    padding: 4px 12px 8px;
 }

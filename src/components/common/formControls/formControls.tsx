@@ -26,7 +26,7 @@ export const FormControl: React.FC<FormControlType> = ({meta: {touched, error}, 
 export const TextArea: React.FC<WrappedFieldProps> = (props) => {
     const {input, meta, ...restProps} = props;
     return (<FormControl {...props}>
-            <textarea {...input} {...restProps}/>
+            <textarea {...input} {...restProps} />
         </FormControl>
     )
 }
@@ -35,7 +35,7 @@ export const Input: React.FC<WrappedFieldProps> = (props) => {
     const {input, meta, ...restProps} = props;
     return (
         <FormControl {...props}>
-            <input {...input} {...restProps}/>
+            <input {...input} {...restProps} />
         </FormControl>
 
     )
@@ -45,7 +45,7 @@ export function createField(placeholder: string| undefined,
                             name: LoginFormvaluesType|ProfileFormvaluesType,
                             validators: Array<FieldValidatorType>,
                             component: string | React.FC<WrappedFieldProps>,
-                            props = {}, text: string = " "){
+                            props = {}, text: string = " " ){
     return (<div>
         <Field component={component}
                placeholder={placeholder}
