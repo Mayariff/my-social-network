@@ -28,8 +28,8 @@ export const Pagenator = ({totalItemsCount, pageSize, currentPage, onPageChanged
 
     return (
         <div className={s.paginator}>
-            <button onClick={() => setPortionNumber(portionNumber - 1)}
-                    className={prevDisabledCondition ? s.bottomDisabled:'' } disabled={prevDisabledCondition}> PREV </button>
+            <button onClick={() => setPortionNumber(portionNumber - 1)} onDoubleClick={() => setPortionNumber(1)}
+                    className={prevDisabledCondition ? s.buttonDisabled:s.btn} disabled={prevDisabledCondition}> PREV </button>
             {
                 pages.filter(p => p >= leftPortionNumber && p <= rightPortionNumber)
                     .map(p => <span key={v1()}
@@ -41,7 +41,7 @@ export const Pagenator = ({totalItemsCount, pageSize, currentPage, onPageChanged
                         {p} </span>)
             }
             <button onClick={() => setPortionNumber(portionNumber + 1)}
-                    className={nextDisabledCondition ? s.bottomDisabled:'' } disabled={nextDisabledCondition}> NEXT </button>
+                    className={nextDisabledCondition ? s.buttonDisabled :s.btn } disabled={nextDisabledCondition}> NEXT </button>
         </div>
     );
 };

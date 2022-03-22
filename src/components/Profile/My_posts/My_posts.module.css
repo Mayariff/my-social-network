@@ -6,13 +6,22 @@
     width: 60%;
     position: relative;
 }
-
+.postLength{
+   position: absolute;
+    top: 2px;
+    left: 4px;
+    font-size: 9px;
+}
 .addPostBtn{
-    margin: 8px 0 20px 2px;
+    margin: 12px 0 26px 2px;
     border: 2px solid #5da2d5;
     color: #5da2d5;
     font-size: 16px;
     background-color: transparent;
     text-decoration: underline;
     padding: 4px 12px 8px;
+}
+.disabled{
+    border: 2px solid rgba(93, 162, 213, 0.55);
+    color: rgba(93, 162, 213, 0.55);
 }

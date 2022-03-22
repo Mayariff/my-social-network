@@ -12,9 +12,10 @@ import {initializeApp} from "./redux/App-reduser";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import store, {AppStateType} from "./redux/redux-store";
-import Preloader from "./components/common/Preloader";
+import Preloader from "./components/common/Preloader/Preloader";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import UnderConstructionPage from "./components/common/UnderСonstructionPage/UnderConstructionPage";
 
 
 //const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -47,9 +48,9 @@ class App extends React.Component<any,any> {
                                   render={() => <DialogsContainer/>}/>
                         <Route path='/profile/:userId?' render={() => <ProfileContainer/>
                                }/>
-                        <Route path='/news' render={() => <News/>}/>
-                        <Route path='/music' render={() => <Music/>}/>
-                        <Route path='/settings' render={() => <Settings/>}/>
+                        <Route path='/news' render={() => <UnderConstructionPage title={'News'}/>}/>
+                        <Route path='/music' render={() => <UnderConstructionPage title={'Music'}/>}/>
+                        <Route path='/settings' render={() => <UnderConstructionPage title={'Settings'}/>}/>
                         <Route path='/users' render={() => <UsersContainer/>}/>
                         <Route path='/login' render={() => <LoginPage/>}/>
                     </div>

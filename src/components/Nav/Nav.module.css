@@ -3,11 +3,19 @@
     background-color: #f78888;
     padding: 30px 20px ;
 }
+.item{
+    margin-bottom: 6px;
+}
+.item a:hover{
+    border-bottom: 1px dotted white;
+}
+
 .item a {
     color: white;
     text-decoration: none;
+    padding: 2px;
 }
 
 .item a:active {
-   color: darkslategray;
+   color: darkslategrey;
 }

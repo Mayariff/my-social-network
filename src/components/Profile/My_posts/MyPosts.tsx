@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEventHandler, useState} from "react";
 import s from './My_posts.module.css'
 import Post from "./Post/Post";
 import {MyPostsType} from "./MyPostsContainer";
@@ -7,20 +7,13 @@ import {MaxLenghtCreator, RequiredField} from "../../../utilits/valid";
 import {TextArea} from "../../common/formControls/formControls";
 
 
-/*type MyPostsType ={
-    newPostText: string
-    addPost: (p:string)=>void
-    updateNewPostText: (p:string)=>void
-    posts:Array<postType>
-    dispatch: (action:ActionTypes)=>void
-}*/
 
 let maxLength = MaxLenghtCreator(30);
 
 const  MyPosts= React.memo((props: MyPostsType) =>{
 
-    let postsElement =
-        props.posts.map((p: any) =>
+
+   const postsElement= props.posts.map((p: any) =>
             <Post id={p.id} key={p.id} content={p.content} likesCount={p.likescount}/>).reverse()
 
    let AddNewPost = (values: FormPostType) => {
@@ -39,12 +32,19 @@ type  FormPostType={
 }
 
 const AddPostForm=(props:InjectedFormProps<FormPostType>)=>{
+    const[count, setCount] =useState<number>(0)
+
+    const onchangeHandler:ChangeEventHandler<HTMLInputElement>  = (e) => {
+        setCount (e.currentTarget.value.length)
+    }
+    const btnStyle =  count >30? `${s.addPostBtn} ${s.disabled}`: s.addPostBtn
+
     return(
     <form onSubmit={props.handleSubmit} className={s.widthTextAria}>
         <Field component={TextArea} name={'newPostBody'} placeholder={'Enter new post'}
-               validate={[RequiredField,maxLength]}/>
-
-        <button className={s.addPostBtn}>Add post</button>
+               validate={[RequiredField,maxLength]} onChange={onchangeHandler} />
+    <div className={s.postLength}>{count}/30</div>
+        <button className={btnStyle} disabled={count >30}>Add post</button>
    </form>)
 }
 export const AddMessageFormReduxForm = reduxForm<FormPostType>({

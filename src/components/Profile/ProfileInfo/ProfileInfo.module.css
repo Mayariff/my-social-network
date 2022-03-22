@@ -45,7 +45,7 @@
 .infoAboutProfile{
     box-sizing: border-box;
     width: 440px;
-    padding: 60px 50px 0 80px;
+    padding: 30px 0 0 60px;
     position: relative;
 }
 
@@ -56,10 +56,10 @@
     letter-spacing: 0.1rem;
     background-color: transparent;
     text-decoration: underline;
-    padding: 4px 12px 8px;
+    padding: 3px 12px;
     position: absolute;
-    top: 0;
-    right: 46px;
+    top: -3px;
+    right: 0;
 }
 .Blue{
     border-color: #5da2d5;

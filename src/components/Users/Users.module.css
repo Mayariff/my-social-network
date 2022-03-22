@@ -1,7 +1,49 @@
-.photo{
-    width: 90px;
-    height: 90px;
-    border: 1px solid gray;
-    border-radius: 50%;
+.usersPage{
+    display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
 }
 
+.card{
+    background-color: #fff;
+    width: 200px;
+    height: 250px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 20px 10px;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photo{
+    width: 176px;
+    height: 160px;
+    border: 1px solid black;
+}
+.btn{
+    border: 2px solid #5da2d5;
+    color: #427ea4;
+    font-size: 14px;
+    background-color: transparent;
+    text-decoration: underline;
+     position: absolute;
+    bottom: 10px;
+}
+
+.unfollow{
+    color:white;
+    background-color: #f78888;
+}
+
+.text{
+    position: relative;
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    color: #00488f;
+    font-size: 16px;
+    margin-top:6px;
+}

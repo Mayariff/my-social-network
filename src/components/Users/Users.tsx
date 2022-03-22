@@ -1,6 +1,7 @@
 import React from 'react';
 import {userType} from "../../redux/User-reducer";
 import User from "./User";
+import s from './Users.module.css'
 
 
 type propsType = {
@@ -13,7 +14,7 @@ type propsType = {
 }
 const Users = ({unfollow,follow,followingInProgress, users}: propsType) => {
 
-    return (<div>
+    return (<div className={s.usersPage}>
             {users.map(u => <User key={u.id}
                                            user={u}
                                            unfollow={unfollow}

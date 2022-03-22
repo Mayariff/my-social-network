@@ -1,6 +1,7 @@
 import {addPost} from "./Profile-reducer";
 import {AddMessageAC, dialogReducer} from "./Dialog-reducer";
 import {navbarReducer} from "./Navbar-reducer";
+import {userType} from "./User-reducer";
 
 type postType = {
     id: number

@@ -5,7 +5,7 @@ import {friendType} from "../../../../redux/Navbar-reducer";
 
 const Friend = (props:friendType) => {
     return (
-            <div>
+            <div className={s.friend}>
                 <img src={props.avatar}  alt='avatar' />
                 <br/><span className={s.name}> {props.name} </span>
             </div>

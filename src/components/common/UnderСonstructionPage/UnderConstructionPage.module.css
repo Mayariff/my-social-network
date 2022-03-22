@@ -1,0 +1,20 @@
+.img{
+    margin-left: 50px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: deeppink no-repeat 50% 100%  scroll;
+    background-size:cover;
+    border: 12px solid #5da2d5;
+}
+
+.container{
+    display: flex ;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sorry{
+    font-size: 56px;
+    font-weight: bolder;
+}

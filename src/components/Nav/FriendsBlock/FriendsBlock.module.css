@@ -1,12 +1,12 @@
 .friendAvatar{
-    display: inline-block;
     vertical-align: middle;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     color: white;
     margin-top: 60px;
-
 }
-
+.friend{
+    margin-bottom: 16px;
+}
 
 .friendAvatar img{
     width: 60px;
@@ -17,6 +17,7 @@
 
 .friendAvatar h2{
     color: white;
+
 }
 .friendAvatar .name {
   text-align: center;

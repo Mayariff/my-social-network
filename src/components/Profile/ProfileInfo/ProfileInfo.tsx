@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 import s from './ProfileInfo.module.css'
-import Preloader from "../../common/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 import Ava from "../../../assets/image/user.jpg";
 import {profileType} from "../../../redux/Profile-reducer";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
@@ -121,9 +121,12 @@ type ContactType = {
 }
 
 const Contact = ({title, value}: ContactType) => {
+    const re = /[-a-zA-Z0-9@:%_\+.~#?&\/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?/gi
+    const contactInfo =  re.test(value)? <a target={'_blank'} href={value}>{value}</a> : value
+
     return <>
         {value && <div className={`${s.contacts} ${s.row}`} >
-            <span className={s.fieldContactName}>{title}:</span> {value}
+            <span className={s.fieldContactName}>{title}:</span> {contactInfo}
         </div>}
     </>
 
