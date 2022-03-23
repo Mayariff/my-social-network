@@ -29,19 +29,21 @@ export const Pagenator = ({totalItemsCount, pageSize, currentPage, onPageChanged
     return (
         <div className={s.paginator}>
             <button onClick={() => setPortionNumber(portionNumber - 1)} onDoubleClick={() => setPortionNumber(1)}
-                    className={prevDisabledCondition ? s.buttonDisabled:s.btn} disabled={prevDisabledCondition}> PREV </button>
+                    className={prevDisabledCondition ? s.buttonDisabled : s.btn} disabled={prevDisabledCondition}> PREV
+            </button>
             {
                 pages.filter(p => p >= leftPortionNumber && p <= rightPortionNumber)
                     .map(p => <span key={v1()}
-                                   /* className={currentPage === p ? `${s.page} ${s.selectedPage}`: s.page}*/
-                                        className={cn({[s.selectedPage]:currentPage === p }, s.page)}
+                        /* className={currentPage === p ? `${s.page} ${s.selectedPage}`: s.page}*/
+                                    className={cn({[s.selectedPage]: currentPage === p}, s.page)}
                                     onClick={() => {
                                         onPageChanged(p)
                                     }}>
                         {p} </span>)
             }
             <button onClick={() => setPortionNumber(portionNumber + 1)}
-                    className={nextDisabledCondition ? s.buttonDisabled :s.btn } disabled={nextDisabledCondition}> NEXT </button>
+                    className={nextDisabledCondition ? s.buttonDisabled : s.btn} disabled={nextDisabledCondition}> NEXT
+            </button>
         </div>
     );
 };

@@ -4,20 +4,14 @@ import {friendType} from "../../../redux/Navbar-reducer";
 import {AppStateType} from "../../../redux/redux-store";
 
 
-type mapStateToPropsType= {
+type mapStateToPropsType = {
     friends: Array<friendType>
 }
-const  mapStateToProps=(state:AppStateType):mapStateToPropsType => {
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-       friends: state.navbarBlock.friends
+        friends: state.navbarBlock.friends
     }
 }
-
-
-/*const mapDispatchToProps =(dispatch:any)=>{
-    return{  }
-    }*/
-
 
 export const FriendsBlockContainer = connect(mapStateToProps)(FriendsBlock)
 

@@ -3,16 +3,16 @@ import {AppThunk} from "./redux-store";
 
 export const INITIALIZE_SUCCESS = 'appReducer/INITIALIZE_SUCCESS'
 
-const initialState:InitialStateType  ={
+const initialState: InitialStateType = {
     initialized: false
 }
 export type InitialStateType = {
     initialized: boolean
 }
-export type initializeAT= {
+export type initializeAT = {
     type: 'appReducer/INITIALIZE_SUCCESS'
 }
- export type initialActionTypes= initializeAT
+export type initialActionTypes = initializeAT
 
 
 export const appReducer = (state: InitialStateType = initialState, action: initialActionTypes): InitialStateType => {
@@ -30,8 +30,10 @@ export const appReducer = (state: InitialStateType = initialState, action: initi
 
 export const initializeAC = () => ({type: INITIALIZE_SUCCESS}) as const
 
-export const initializeApp = ():AppThunk  =>(dispatch) => {
-   let promise = dispatch(getAuthUserData())
-   Promise.all([promise])
-       .then(()=>{dispatch(initializeAC())})
+export const initializeApp = (): AppThunk => (dispatch) => {
+    let promise = dispatch(getAuthUserData())
+    Promise.all([promise])
+        .then(() => {
+            dispatch(initializeAC())
+        })
 }

@@ -3,29 +3,29 @@ import ProfileInfo, {FormDataType} from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./My_posts/MyPostsContainer";
 import {profileType} from "../../redux/Profile-reducer";
 
-type propsType= {
+type propsType = {
     profile: profileType
     status: string
-    updateStatus:(status: string)=>void
+    updateStatus: (status: string) => void
     isOwner: boolean
-    savePhoto:( photo:any)=>void
-    saveProfile:(formData: FormDataType)=>void
+    savePhoto: (photo: any) => void
+    saveProfile: (formData: FormDataType) => void
 }
 
-const Profile =(props:propsType) =>{
+const Profile = (props: propsType) => {
 
-    return(
-        <div >
+    return (
+        < >
             <h1>Profile</h1>
-            <ProfileInfo  profile={props.profile}
-                          status={props.status}
-                          updateStatus={props.updateStatus}
-                          isOwner={ props.isOwner}
-                           savePhoto={props.savePhoto}
-                          saveProfile={props.saveProfile}
+            <ProfileInfo profile={props.profile}
+                         status={props.status}
+                         updateStatus={props.updateStatus}
+                         isOwner={props.isOwner}
+                         savePhoto={props.savePhoto}
+                         saveProfile={props.saveProfile}
             />
-            <MyPostsContainer />
-        </div>
+            <MyPostsContainer/>
+        </>
     )
 }
 export default Profile;

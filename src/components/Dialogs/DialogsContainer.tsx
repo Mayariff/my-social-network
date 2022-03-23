@@ -1,4 +1,4 @@
-import {AddMessageAC, InitialStateType,} from "../../redux/Dialog-reducer";
+import {AddDialogItemAC, AddMessageAC, InitialStateType,} from "../../redux/Dialog-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
@@ -7,31 +7,32 @@ import React from "react";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
-type MapStatePropsType={
+type MapStatePropsType = {
     dialogPage: InitialStateType
 }
-type mapDispatchToPropsType={
-    /*updateNewMessageText: (text:string)=> void*/
-    addMessage: (newMessageBody:string)=> void
-    }
+type mapDispatchToPropsType = {
+    addMessage: (newMessageBody: string) => void
+    addDialogItem: (id: number, name: string, avatar: string) => void
+}
 
 
 export type dialogPageType = MapStatePropsType & mapDispatchToPropsType
 
-const mapStateToProps =(state:AppStateType):MapStatePropsType => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         dialogPage: state.dialogPage,
     }
 }
 
-const mapDispatchToProps =(dispatch:Dispatch): mapDispatchToPropsType=>{
-    return{
-        /*updateNewMessageText: (text:string)=> {
-            dispatch(UpdateNewMessageTextAC(text));
-        },*/
-        addMessage: (newMessageBody:string)=>{
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+    return {
+        addMessage: (newMessageBody: string) => {
             dispatch(AddMessageAC(newMessageBody));
-        }
+        },
+        addDialogItem: (id: number, name: string, avatar: string) => {
+            dispatch(AddDialogItemAC(id, name, avatar))
+        },
+
     }
 }
 

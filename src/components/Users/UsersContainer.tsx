@@ -3,10 +3,12 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
     followSuccess,
-    unFollowSuccess,
     InitialStateType,
-    setCurrentPages, setToggleFollowingProgress,
-    userType, requestUsers,
+    requestUsers,
+    setCurrentPages,
+    setToggleFollowingProgress,
+    unFollowSuccess,
+    userType,
 } from "../../redux/User-reducer";
 
 import Users from "./Users";
@@ -23,8 +25,7 @@ import {
 import {Pagenator} from "../common/Pagenator/Pagenator";
 
 
-
-type MapStatePropsType={
+type MapStatePropsType = {
     usersPage: InitialStateType
     pageSize: number
     totalUsersCount: number
@@ -32,17 +33,17 @@ type MapStatePropsType={
     isFetching: boolean
     followingInProgress: Array<number>
 }
-export type mapDispatchToPropsType={
-    acceptFollow: (userID: number) =>void
+export type mapDispatchToPropsType = {
+    acceptFollow: (userID: number) => void
     acceptUnFollow: (userID: number) => void
-    setCurrentPages: (pageNumber: number)=>void
-    setToggleFollowingProgress: (followingInProgress: boolean, userID: number)=> void
-    requestUsers: (currentPage: number, pageSize: number)=> void
+    setCurrentPages: (pageNumber: number) => void
+    setToggleFollowingProgress: (followingInProgress: boolean, userID: number) => void
+    requestUsers: (currentPage: number, pageSize: number) => void
 }
 export type UsersPropsType = MapStatePropsType & mapDispatchToPropsType
 export  type dataType = {
     error: string
-    items : Array<userType>
+    items: Array<userType>
     totalCount: number
 }
 
@@ -54,28 +55,28 @@ class UsersAPIComponent extends React.Component <UsersPropsType> {
 
     onPageChanged = (pageNumber: number) => {
         let {pageSize} = this.props
-        this.props.requestUsers(pageNumber,pageSize);
+        this.props.requestUsers(pageNumber, pageSize);
     }
 
     render() {
         return <>
-            {this.props.isFetching ? <Preloader/>: null}
+            {this.props.isFetching ? <Preloader/> : null}
             <Pagenator totalItemsCount={this.props.usersPage.totalUsersCount}
                        pageSize={this.props.usersPage.pageSize}
                        currentPage={this.props.currentPage}
-                       onPageChanged={this.onPageChanged} />
+                       onPageChanged={this.onPageChanged}/>
             <Users
-            users={this.props.usersPage.users}
-            onPageChanged={this.onPageChanged}
-            unfollow={this.props.acceptUnFollow}
-            follow={this.props.acceptFollow}
-            followingInProgress ={this.props.followingInProgress}
-        />
+                users={this.props.usersPage.users}
+                onPageChanged={this.onPageChanged}
+                unfollow={this.props.acceptUnFollow}
+                follow={this.props.acceptFollow}
+                followingInProgress={this.props.followingInProgress}
+            />
         </>
     }
 }
 
-const mapStateToProps = (state: AppStateType):MapStatePropsType  => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         usersPage: getUsers(state),
         pageSize: getPageSize(state),
@@ -87,7 +88,7 @@ const mapStateToProps = (state: AppStateType):MapStatePropsType  => {
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps,  {
+    connect(mapStateToProps, {
         acceptUnFollow: unFollowSuccess,
         acceptFollow: followSuccess,
         setCurrentPages,

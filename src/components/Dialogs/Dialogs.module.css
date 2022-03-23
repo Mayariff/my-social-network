@@ -1,13 +1,18 @@
+.AddMessageField{
+    width: 90%;
+    position: relative;
+    bottom: 0;
+}
+
+
 .dialogs {
     display: grid;
     grid-template-columns : 2fr 10fr;
     padding: 10px;
+    height: 100%;
 
 }
-.dialogItems{
 
-    padding: 10px;
-}
 
 .active {
     color: darkslategray;
@@ -17,13 +22,24 @@
 .massages{
     padding: 20px;
 }
-.styleSendMessage{
- margin-left: 200px;
-    margin-top: 20px;
+
+.postLength{
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    font-size: 9px;
 }
 
-.button {
-    margin: 10px auto;
-    padding: 3px;
+.button{
+    margin: 12px 0 0 2px;
+    border: 2px solid #5da2d5;
+    color: #5da2d5;
+    font-size: 16px;
+    background-color: transparent;
+    text-decoration: underline;
+    padding: 4px 12px 8px;
 }
-
+.disabled{
+    border: 2px solid rgba(93, 162, 213, 0.55);
+    color: rgba(93, 162, 213, 0.55);
+}

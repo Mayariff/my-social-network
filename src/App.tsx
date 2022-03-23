@@ -18,48 +18,48 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import UnderConstructionPage from "./components/common/UnderСonstructionPage/UnderConstructionPage";
 
 
-//const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-//const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
-
-class App extends React.Component<any,any> {
+class App extends React.Component<any, any> {
 
     componentDidMount() {
         this.props.initializeApp()
-        window.addEventListener('unhandledrejection', function(event) {
+        window.addEventListener('unhandledrejection', function (event) {
             console.error('Unhandled rejection (promise: ', event.promise, ', reason: ', event.reason, ').');
         });
     }
+
     componentWillUnmount() {
-        window.removeEventListener('unhandledrejection', function(event) {
+        window.removeEventListener('unhandledrejection', function (event) {
             console.error('Unhandled rejection (promise: ', event.promise, ', reason: ', event.reason, ').');
         });
     }
 
     render() {
-        if(!this.props.initialized){return <Preloader />}
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
         return (
-                <div className='app-w'>
-                    <HeaderContainer/>
-                    <Nav/>
-                    <div className='app-wrapper-content'>
-                        <Route exact path='/' render={() => <Redirect  to={'/profile'} />
-                        }/>
-                        <Route path='/dialogs'
-                                  render={() => <DialogsContainer/>}/>
-                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>
-                               }/>
-                        <Route path='/news' render={() => <UnderConstructionPage title={'News'}/>}/>
-                        <Route path='/music' render={() => <UnderConstructionPage title={'Music'}/>}/>
-                        <Route path='/settings' render={() => <UnderConstructionPage title={'Settings'}/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/login' render={() => <LoginPage/>}/>
-                    </div>
+            <div className='app-w'>
+                <HeaderContainer/>
+                <Nav/>
+                <div className='app-wrapper-content'>
+                    <Route exact path='/' render={() => <Redirect to={'/profile'}/>
+                    }/>
+                    <Route path='/dialogs'
+                           render={() => <DialogsContainer/>}/>
+                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>
+                    }/>
+                    <Route path='/news' render={() => <UnderConstructionPage title={'News'}/>}/>
+                    <Route path='/music' render={() => <UnderConstructionPage title={'Music'}/>}/>
+                    <Route path='/settings' render={() => <UnderConstructionPage title={'Settings'}/>}/>
+                    <Route path='/users' render={() => <UsersContainer/>}/>
+                    <Route path='/login' render={() => <LoginPage/>}/>
                 </div>
+            </div>
         );
     }
 }
 
-type MapStatePropsType={
+type MapStatePropsType = {
     initialized: boolean
 }
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
@@ -67,10 +67,10 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 })
 
 let AppContainer = compose(connect(mapStateToProps, {initializeApp}))(App);
-let MainApp= ()=>{
+let MainApp = () => {
     return (<HashRouter basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
-            <AppContainer />
+            <AppContainer/>
         </Provider>
     </HashRouter>)
 }

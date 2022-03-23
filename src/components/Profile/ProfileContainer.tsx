@@ -18,31 +18,32 @@ import {FormDataType} from "./ProfileInfo/ProfileInfo";
 export type MapStatePropsType = {
     profile: profileType
     status: string
-    autorizedUserID: number|null,
+    autorizedUserID: number | null,
     isAuth: boolean
 }
 
 
-type MapDispatchPropsType ={
-    getUserProfile: (userId: number)=> void
-    getStatus:(userId: number)=>void
-    updateStatus:(status: string)=>void
-    savePhoto: (photo: any)=> void
-   saveProfile:(formData: FormDataType)=>void
+type MapDispatchPropsType = {
+    getUserProfile: (userId: number) => void
+    getStatus: (userId: number) => void
+    updateStatus: (status: string) => void
+    savePhoto: (photo: any) => void
+    saveProfile: (formData: FormDataType) => void
 }
 export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType & FormDataType
 type PathParamsType = {
     userId: string
 }
 type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
-class ProfileContainer extends React.Component<PropsType>{
 
-    refreshProfile(){
-        let userId= +this.props.match.params.userId;
-        if(!userId){
-            if(this.props.autorizedUserID){
+class ProfileContainer extends React.Component<PropsType> {
+
+    refreshProfile() {
+        let userId = +this.props.match.params.userId;
+        if (!userId) {
+            if (this.props.autorizedUserID) {
                 userId = this.props.autorizedUserID;
-            } else{
+            } else {
                 this.props.history.push('/login')
             }
         }
@@ -51,11 +52,11 @@ class ProfileContainer extends React.Component<PropsType>{
     }
 
     componentDidMount() {
-      this.refreshProfile()
+        this.refreshProfile()
     }
 
     componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
-        if(this.props.match.params.userId !== prevProps.match.params.userId) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
             this.refreshProfile()
         }
     }
@@ -65,7 +66,7 @@ class ProfileContainer extends React.Component<PropsType>{
                         profile={this.props.profile}
                         status={this.props.status}
                         updateStatus={this.props.updateStatus}
-                        isOwner ={!this.props.match.params.userId}
+                        isOwner={!this.props.match.params.userId}
                         savePhoto={this.props.savePhoto}
                         saveProfile={this.props.saveProfile}
         />;
@@ -73,20 +74,19 @@ class ProfileContainer extends React.Component<PropsType>{
 }
 
 
-
-
 //let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
 
 
-let mapStateToProps = (state:AppStateType ): MapStatePropsType => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         autorizedUserID: state.auth.userId,
-         isAuth: state.auth.isAuth}
+        isAuth: state.auth.isAuth
+    }
 }
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus,savePhoto,saveProfile}),
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto, saveProfile}),
     withRouter,
     //withAuthRedirect
 )(ProfileContainer)

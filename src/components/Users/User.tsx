@@ -14,18 +14,18 @@ type propsType = {
 const User = ({user, unfollow, follow, followingInProgress}: propsType) => {
     return (
         <div className={s.card}>
-                 <div>
-                     <NavLink to={'/profile/' + user.id}>
-                                <img src={user.photos.small != null ? user.photos.small : userPhoto} className={s.photo}
-                                     alt={"small Avatar"}/>
-                            </NavLink>
-                        </div>
-                            <div className={s.text}>{user.name}</div>
+            <div>
+                <NavLink to={'/profile/' + user.id}>
+                    <img src={user.photos.small != null ? user.photos.small : userPhoto} className={s.photo}
+                         alt={"small Avatar"}/>
+                </NavLink>
+            </div>
+            <div className={s.text}>{user.name}</div>
             {user.followed ?
                 <button disabled={followingInProgress.some(id => id === user.id)}
                         onClick={() => {
                             unfollow(user.id)
-                        }}  className={`${s.btn} ${s.unfollow}`}> UnFollow</button> :
+                        }} className={`${s.btn} ${s.unfollow}`}> UnFollow</button> :
                 <button disabled={followingInProgress.some(id => id === user.id)}
                         onClick={() => {
                             follow(user.id)

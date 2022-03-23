@@ -1,11 +1,24 @@
 .dialog{
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 5px;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 20px;
 }
 .dialog img{
-    width: 60px;
-    height: 60px;
-    border: 1px solid gray;
+    width: 66px;
+    height: 66px;
+    border: 4px solid white;
     border-radius: 50%;
+}
+
+.name{
+    color: white;
+    text-decoration: none;
+    padding-bottom: 2px;
+}
+
+.name:hover{
+    border-bottom: 1px dotted white;
+}
+.name:active{
+    color: darkslategrey;
 }

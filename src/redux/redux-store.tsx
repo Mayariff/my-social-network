@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {addPost, deletePost, profileReducer, savePhotoSuccess, setStatus, setUserProfile} from "./Profile-reducer";
-import {AddMessageAC, dialogReducer} from "./Dialog-reducer";
+import {AddDialogItemAC, AddMessageAC, dialogReducer} from "./Dialog-reducer";
 import {navbarReducer} from "./Navbar-reducer";
 import {userReducer} from "./User-reducer";
 import {AuthActionTypes, authReducer} from "./Auth-reduser";
@@ -10,8 +10,8 @@ import {appReducer, initialActionTypes} from "./App-reduser";
 
 
 export type ActionTypes = ReturnType<typeof addPost> |
-    ReturnType<typeof AddMessageAC> |
-    ReturnType<typeof setUserProfile>|
+    ReturnType<typeof AddMessageAC> | ReturnType<typeof AddDialogItemAC> |
+    ReturnType<typeof setUserProfile> |
     ReturnType<typeof setStatus> | ReturnType<typeof deletePost> | ReturnType<typeof savePhotoSuccess>
 
 let rootReducer = combineReducers({
@@ -33,9 +33,9 @@ export type AppStateType = ReturnType<typeof rootReducer>
 //let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 export default store;
 
-export type RootActionTypes = ActionTypes| AuthActionTypes |initialActionTypes
-export type AppThunk= ThunkAction<void, AppStateType, unknown, RootActionTypes>
+export type RootActionTypes = ActionTypes | AuthActionTypes | initialActionTypes
+export type AppThunk = ThunkAction<void, AppStateType, unknown, RootActionTypes>
 
 
 // @ts-ignore
-window._store_ =store
+window._store_ = store

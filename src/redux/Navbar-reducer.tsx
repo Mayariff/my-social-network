@@ -5,9 +5,9 @@ export type friendType = {
     name: string
     avatar: string
 }
-export type InitialStateType =typeof initialState
+export type InitialStateType = typeof initialState
 
-let initialState ={
+let initialState = {
     friends: [
         {
             id: 1,
@@ -28,6 +28,6 @@ let initialState ={
 }
 
 
-export const navbarReducer =(state: InitialStateType = initialState , action:ActionTypes):InitialStateType =>{
+export const navbarReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     return state;
 }

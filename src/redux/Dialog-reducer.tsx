@@ -1,6 +1,8 @@
 import {ActionTypes} from "./redux-store";
 
 const ADD_MESSAGE = "dialogReducer/ADD-MESSAGE";
+const ADD_DIALOG_ITEM = "dialogReducer/ADD_DIALOG_ITEM";
+
 /*const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';*/
 
 /*export type dialogPageType = {
@@ -42,7 +44,7 @@ let initialState = {
         {id: 2, content: "hi2"},
         {id: 3, content: "hi3"},
     ] as Array<messagesType>,
-    newMessageText: "" ,
+    newMessageText: "",
 }
 export type InitialStateType = typeof initialState
 
@@ -58,7 +60,13 @@ export const dialogReducer = (state: InitialStateType = initialState, action: Ac
             let newMessage = action.newMessageBody
             return {
                 ...state,
-                messages: [...state.messages,{id: 100, content: newMessage}]
+                messages: [...state.messages, {id: 100, content: newMessage}]
+            }
+
+        case ADD_DIALOG_ITEM:
+            return {
+                ...state,
+                dialogs: [...state.dialogs, {id: action.id, name: action.name, avatar: action.avatar}]
             }
 
         default:
@@ -67,6 +75,9 @@ export const dialogReducer = (state: InitialStateType = initialState, action: Ac
 }
 
 export const AddMessageAC = (newMessageBody: string) => ({type: ADD_MESSAGE, newMessageBody}) as const
+export const AddDialogItemAC = (id: number,
+                                name: string,
+                                avatar: string) => ({type: ADD_DIALOG_ITEM, id, name, avatar}) as const
 /*
 export const UpdateNewMessageTextAC = (text: string) => (
     {type: UPDATE_NEW_MESSAGE_TEXT, newMessageText: text}) as const*/

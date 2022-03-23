@@ -1,11 +1,9 @@
-import React from "react";
+import React, {KeyboardEventHandler} from "react";
 import s from './FormControle.module.css'
 import {FieldValidatorType} from "../../../utilits/valid";
 import {Field, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form";
 import {LoginFormvaluesType} from "../../Login/Login";
 import {ProfileFormvaluesType} from "../../Profile/ProfileInfo/ProfileInfo";
-
-
 
 
 type FormControlType = {
@@ -25,9 +23,13 @@ export const FormControl: React.FC<FormControlType> = ({meta: {touched, error}, 
 
 export const TextArea: React.FC<WrappedFieldProps> = (props) => {
     const {input, meta, ...restProps} = props;
-    return (<FormControl {...props}>
-            <textarea {...input} {...restProps} />
+    const keyPressHandler: KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
+        if (e.code === 'Enter') {
+        }
+    }
 
+    return (<FormControl {...props}>
+            <textarea {...input} {...restProps} onKeyPress={keyPressHandler}/>
         </FormControl>
     )
 }
@@ -42,11 +44,11 @@ export const Input: React.FC<WrappedFieldProps> = (props) => {
     )
 }
 
-export function createField(placeholder: string| undefined,
-                            name: LoginFormvaluesType|ProfileFormvaluesType,
+export function createField(placeholder: string | undefined,
+                            name: LoginFormvaluesType | ProfileFormvaluesType,
                             validators: Array<FieldValidatorType>,
                             component: string | React.FC<WrappedFieldProps>,
-                            props = {}, text: string = " " ){
+                            props = {}, text: string = " ") {
     return (<div>
         <Field component={component}
                placeholder={placeholder}

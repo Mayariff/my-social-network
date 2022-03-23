@@ -1,7 +1,6 @@
 import {addPost} from "./Profile-reducer";
 import {AddMessageAC, dialogReducer} from "./Dialog-reducer";
 import {navbarReducer} from "./Navbar-reducer";
-import {userType} from "./User-reducer";
 
 type postType = {
     id: number
@@ -27,7 +26,7 @@ export type profilePageType = {
     posts: Array<postType>
     newPostText: string
 }
- type dialogPageType = {
+type dialogPageType = {
     dialogs: Array<dialogsType>
     messages: Array<messagesType>
     newMessageText: string
@@ -125,6 +124,6 @@ export const store: storeType = {
         this._state.navbarBlock = navbarReducer(this._state.navbarBlock, action);
     }
 }
-        store._callSubscriber();
+store._callSubscriber();
 
 

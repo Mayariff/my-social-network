@@ -3,13 +3,13 @@ import {ProfileAPI, usersAPI} from "../API/Api";
 import {Dispatch} from "redux";
 import {ResultCodesEnum} from "./Auth-reduser";
 import {FormDataType} from "../components/Profile/ProfileInfo/ProfileInfo";
-import { stopSubmit} from "redux-form";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS ";
-const DELETE_POST= "DELETE-POST";
-const SAVE_PHOTO_SUCCESS= 'SAVE_PHOTO_SUCCESS';
+const DELETE_POST = "DELETE-POST";
+const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
 
 export type postType = {
     id: number
@@ -25,16 +25,18 @@ export type profileType = {
         instagram?: string
         youtube?: string
         github?: string
-        mainLink?: string}
+        mainLink?: string
+    }
     lookingForAJob: boolean
     lookingForAJobDescription?: string
     fullName: string
-        userId: number
+    userId: number
     photos: {
         small?: string
-        URL?: string| null
-        large?: string }
-    aboutMe?:string
+        URL?: string | null
+        large?: string
+    }
+    aboutMe?: string
 }
 export type InitialStateType = typeof initialState
 let initialState = {
@@ -44,8 +46,8 @@ let initialState = {
         {id: 3, content: 'laLaLa', likesCount: 0},
     ] as Array<postType>,
     /*newPostText: "",*/
-    profile:{} as profileType,
-    status:""
+    profile: {} as profileType,
+    status: ""
 }
 
 
@@ -58,9 +60,9 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
                 likesCount: 0
             };
             return {
-                    ...state,
-                    posts: [...state.posts, newPost],
-                    /*newPostText: ""*/
+                ...state,
+                posts: [...state.posts, newPost],
+                /*newPostText: ""*/
             }
         /*case UPDATE_NEW_POST_TEXT:
                 return {...state,
@@ -70,59 +72,61 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
         case SET_STATUS:
             return {...state, status: action.status}
         case DELETE_POST:
-            let copy ={...state}
-            let FilteredPosts= copy.posts.filter((p)=> p.id !== action.id ? p: '')
-            return   {...copy, posts: FilteredPosts}
+            let copy = {...state}
+            let FilteredPosts = copy.posts.filter((p) => p.id !== action.id ? p : '')
+            return {...copy, posts: FilteredPosts}
         case SAVE_PHOTO_SUCCESS:
-            return   {...state, profile: {...state.profile, photos: action.photos}}
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state;
-        }
-    };
-    export const addPost = (newPostBody: string) => ({type: ADD_POST, newPostBody}) as const
-  /*  export const UpdateNewPostTextAC = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newPostText: text}) as const*/
-   export const setUserProfile =(profile: profileType)=> ({type: SET_USER_PROFILE, profile }) as const
-export const setStatus = (status: string)=> ({type: SET_STATUS, status}) as const
-export const deletePost = (id: number)=> ({type: DELETE_POST, id}) as const
-export const savePhotoSuccess = (photos: any)=> ({type: SAVE_PHOTO_SUCCESS, photos}) as const
+    }
+};
+export const addPost = (newPostBody: string) => ({type: ADD_POST, newPostBody}) as const
+/*  export const UpdateNewPostTextAC = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newPostText: text}) as const*/
+export const setUserProfile = (profile: profileType) => ({type: SET_USER_PROFILE, profile}) as const
+export const setStatus = (status: string) => ({type: SET_STATUS, status}) as const
+export const deletePost = (id: number) => ({type: DELETE_POST, id}) as const
+export const savePhotoSuccess = (photos: any) => ({type: SAVE_PHOTO_SUCCESS, photos}) as const
 
-export type getProfileResponseType={
+export type getProfileResponseType = {
 
     resultCode: ResultCodesEnum
     data: profileType
 
 }
 
-export const getUserProfile =(userId: number)=>async (dispatch: Dispatch<ActionTypes>)=>{
-        let response = await  usersAPI.getProfile(userId)
-           dispatch(setUserProfile(response.data));
+export const getUserProfile = (userId: number) => async (dispatch: Dispatch<ActionTypes>) => {
+    let response = await usersAPI.getProfile(userId)
+    dispatch(setUserProfile(response.data));
 }
-export const getStatus =(userId: number)=> async (dispatch: Dispatch<ActionTypes>)=>{
-    let response = await  ProfileAPI.getStatus(userId)
-            dispatch(setStatus(response.data));
+export const getStatus = (userId: number) => async (dispatch: Dispatch<ActionTypes>) => {
+    let response = await ProfileAPI.getStatus(userId)
+    dispatch(setStatus(response.data));
 }
-export const updateStatus =(status: string)=>async (dispatch: Dispatch<ActionTypes>)=>{
-    let response= await ProfileAPI.updateStatus(status)
-            if(response.data.resultCode===0){
-            dispatch(setStatus(status));}
-}
-
-export const savePhoto =(file: any)=>async (dispatch: Dispatch<ActionTypes>)=>{
-    let response= await ProfileAPI.savePhoto(file)
-    if(response.data.resultCode===0){
-        dispatch(savePhotoSuccess(response.data.data.photos));}
+export const updateStatus = (status: string) => async (dispatch: Dispatch<ActionTypes>) => {
+    let response = await ProfileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status));
+    }
 }
 
-export const saveProfile =(formData: FormDataType): AppThunk =>async (dispatch, getState:()=>AppStateType) =>{
+export const savePhoto = (file: any) => async (dispatch: Dispatch<ActionTypes>) => {
+    let response = await ProfileAPI.savePhoto(file)
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos));
+    }
+}
 
-    const ID= getState().auth.userId
+export const saveProfile = (formData: FormDataType): AppThunk => async (dispatch, getState: () => AppStateType) => {
 
-    let response= await ProfileAPI.saveProfile(formData)
-    if(response.data.resultCode===0)  {
+    const ID = getState().auth.userId
+
+    let response = await ProfileAPI.saveProfile(formData)
+    if (response.data.resultCode === 0) {
         //ID && await  usersAPI.getProfile(ID)
         ID && dispatch(getUserProfile(ID))
-     }else {
+    } else {
         //let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
-       dispatch(stopSubmit('edit-profile', {_error:  'Invalid url format'}))
-   }
+        dispatch(stopSubmit('edit-profile', {_error: 'Invalid url format'}))
+    }
 }

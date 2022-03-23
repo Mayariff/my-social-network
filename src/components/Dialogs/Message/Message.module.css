@@ -1,14 +1,16 @@
-
-
 .massage {
     display: inline-block;
     vertical-align: bottom;
     width: 200px;
     background-color: white;
     border-radius: 5px;
-    margin: 10px;
+    margin: 0 0 50px;
     padding: 10px 15px;
     position: relative;
+
+    font-family: 'Comic Sans MS';
+    color: #00488f;
+    font-size: 16px;
 
 }
 .massage:before{

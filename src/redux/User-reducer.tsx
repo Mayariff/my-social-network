@@ -35,12 +35,16 @@ let initialState = {
 export const userReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case FOLLOW:
-            let newUsers: userType[]=updateObjectInArray(state.users,action.userID, 'id',{followed: true})
-           return {...state,
-               users: newUsers }
+            let newUsers: userType[] = updateObjectInArray(state.users, action.userID, 'id', {followed: true})
+            return {
+                ...state,
+                users: newUsers
+            }
         case UN_FOLLOW:
-            return {...state,
-                users: updateObjectInArray(state.users,action.userID, 'id',{followed: false}) }
+            return {
+                ...state,
+                users: updateObjectInArray(state.users, action.userID, 'id', {followed: false})
+            }
         case SET_USERS:
             return {
                 ...state,
@@ -101,14 +105,14 @@ export const requestUsers = (page: number, pageSize: number): ThunkAction<Promis
     dispatch(setTotalUsersCount(data.totalCount))
 }
 
-type ObjectType ={
+type ObjectType = {
     dispatch: Dispatch<ActionTypes>,
     userID: number,
-    ApiMethod: (userID:number)=>Promise<AxiosResponse>
+    ApiMethod: (userID: number) => Promise<AxiosResponse>
     AC: typeof followSuccess | typeof unFollowSuccess
 }
 
-export const followUnfollow = async ({dispatch, userID, ApiMethod,AC} :ObjectType) => {
+export const followUnfollow = async ({dispatch, userID, ApiMethod, AC}: ObjectType) => {
     dispatch(setToggleFollowingProgress(true, userID));
     let response = await ApiMethod(userID)
     if (response.data.resultCode === 0) {

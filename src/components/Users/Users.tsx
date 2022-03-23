@@ -9,17 +9,17 @@ type propsType = {
     onPageChanged: (pageNumber: number) => void
     unfollow: (userID: number) => void
     follow: (userID: number) => void
-    followingInProgress : Array<number>
+    followingInProgress: Array<number>
 
 }
-const Users = ({unfollow,follow,followingInProgress, users}: propsType) => {
+const Users = ({unfollow, follow, followingInProgress, users}: propsType) => {
 
     return (<div className={s.usersPage}>
             {users.map(u => <User key={u.id}
-                                           user={u}
-                                           unfollow={unfollow}
-                                           follow={follow}
-                                           followingInProgress={followingInProgress} />)
+                                  user={u}
+                                  unfollow={unfollow}
+                                  follow={follow}
+                                  followingInProgress={followingInProgress}/>)
             }
         </div>
     );

@@ -7,26 +7,26 @@ import userImg from '../../../../assets/image/user.png'
 import likeImg from '../../../../assets/image/heart_favourite_love_like_icon_159300.png'
 
 
-const   Post = (props:postType) => {
-    const avatar = useSelector<AppStateType, string|undefined>(state=> state.profilePage.profile.photos?.large)
-    const imgAvatar = avatar? avatar: userImg
-   const likeCount =  props.likesCount? props.likesCount: 0
+const Post = (props: postType) => {
+    const avatar = useSelector<AppStateType, string | undefined>(state => state.profilePage.profile.photos?.large)
+    const imgAvatar = avatar ? avatar : userImg
+    const likeCount = props.likesCount ? props.likesCount : 0
 
     return (
         <div className={s.post}>
             <div>
-                <img src={imgAvatar} alt="avatar1"  className={s.avatarImg}/>
+                <img src={imgAvatar} alt="avatar1" className={s.avatarImg}/>
             </div>
 
-                <div className={s.postText}>
+            <div className={s.postText}>
 
-                    {props.content}
+                {props.content}
 
                 <div className={s.like}>
-                    <img src={likeImg} alt={'likes'}  className={s.likeImg} />
+                    <img src={likeImg} alt={'likes'} className={s.likeImg}/>
                     <span> Likes: {likeCount} </span>{props.likesCount}
                 </div>
-                </div>
+            </div>
 
         </div>)
 }

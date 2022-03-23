@@ -14,5 +14,6 @@
     grid-area: c;
     background-color: #f3d250;
     padding: 20px 40px;
+    position: relative;
 }
 
