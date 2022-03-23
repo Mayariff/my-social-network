@@ -4,6 +4,7 @@ import './index.css';
 import {BrowserRouter} from "react-router-dom";
 import MainApp from "./App";
 
+/*"homepage": "https://Mayariff.github.io/my-social-network",*/
 
     ReactDOM.render(
         <BrowserRouter>
