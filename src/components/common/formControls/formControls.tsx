@@ -12,6 +12,7 @@ type FormControlType = {
 
 export const FormControl: React.FC<FormControlType> = ({meta: {touched, error}, children}) => {
     const hasError = touched && error;
+
     return (<div className={hasError ? `${s.formControl} ${s.error}` : `${s.formControl}`}>
             <div>
                 {children}
@@ -37,7 +38,7 @@ export const TextArea: React.FC<WrappedFieldProps> = (props) => {
 export const Input: React.FC<WrappedFieldProps> = (props) => {
     const {input, meta, ...restProps} = props;
     return (
-        <FormControl {...props}>
+        <FormControl {...props} >
             <input {...input} {...restProps} />
         </FormControl>
 
@@ -48,7 +49,8 @@ export function createField(placeholder: string | undefined,
                             name: LoginFormvaluesType | ProfileFormvaluesType,
                             validators: Array<FieldValidatorType>,
                             component: string | React.FC<WrappedFieldProps>,
-                            props = {}, text: string = " ") {
+                            props:any = {}, text: string = "") {
+
     return (<div>
         <Field component={component}
                placeholder={placeholder}

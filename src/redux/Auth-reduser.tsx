@@ -22,10 +22,6 @@ let initialState: InitialStateType = {
     login: null,
     isAuth: false,
     captchaUrl: null
-    /* id: 2 as number,
-     email: 'blabla@bla.bla' as string|null,
-     login: 'samurai' as string|null,
-     isAuth: false*/
 }
 
 export const authReducer = (state: InitialStateType = initialState, action: AuthActionTypes): InitialStateType => {

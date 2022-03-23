@@ -25,6 +25,15 @@ export type FormDataType = {
 
 export type LoginFormvaluesType = keyof FormDataType
 const Login: React.FC<mapStateToPropsType & mapDispatchPropsType> = (props) => {
+
+    const getInitialValues =()=> {
+        return {
+            email: '79027972026@yandex.ru',
+            password: '19051991',
+        };
+    }
+
+
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
@@ -42,7 +51,7 @@ const Login: React.FC<mapStateToPropsType & mapDispatchPropsType> = (props) => {
                     <div className={style.text}> Connect with friends and the world around you on Socialite.</div>
                 </div>
                 <div className={style.loginFormContainer}>
-                    <LoginReduxForm onSubmit={onSubmit} captcha={props.captchaUrl}/>
+                    <LoginReduxForm onSubmit={onSubmit} captcha={props.captchaUrl} initialValues={getInitialValues()}/>
                 </div>
             </div>
         </>

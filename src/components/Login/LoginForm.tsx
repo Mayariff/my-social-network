@@ -17,7 +17,6 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, forCaptchaType>
         return (
             <form onSubmit={handleSubmit} className={style.loginForm}>
                 <div className={style.fields}>
-
                     {createField('email', 'email', [RequiredField], Input, {type: "email"})}
                     {createField('password', 'password', [RequiredField], Input, {type: "password"})}
                     <label className={style.checkbox}>
