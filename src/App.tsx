@@ -68,12 +68,13 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 
 let AppContainer = compose(connect(mapStateToProps, {initializeApp}))(App);
 let MainApp = () => {
-    return (/*<HashRouter basename={process.env.PUBLIC_URL}>*/
-        <BrowserRouter>
+    return (<HashRouter basename={process.env.PUBLIC_URL}>
+
             <Provider store={store}>
             <AppContainer/>
-        </Provider></BrowserRouter>
-    /*</HashRouter>*/)
+        </Provider>
+
+    </HashRouter>)
 }
 export default MainApp;
 
