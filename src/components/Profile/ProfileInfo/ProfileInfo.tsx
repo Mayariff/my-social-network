@@ -124,11 +124,16 @@ type ContactType = {
 
 const Contact = ({title, value}: ContactType) => {
     const re = /[-a-zA-Z0-9@:%_\+.~#?&\/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?/gi
-     const contactInfo = re.test(value) ? <a target={'_blank'} href={value}>{value.replace(/(^\w+:|^)\/\//, '')}</a> : value
+
+    const linkValue= value && value.replace(/(^\w+:|^)\/\/?(www.)?/, '')
+    const shortLink  = (linkValue && linkValue.length < 35 )? linkValue :  linkValue?.slice(0, 28)+'...'
+
+     const contactInfo = re.test(value) ? <a target={'_blank'} href={value}>{shortLink}</a> : value
 
     return <>
         {value && <div className={`${s.contacts} ${s.row}`}>
-            <span className={s.fieldContactName}>{title}:</span> {contactInfo}
+            <div className={s.fieldContactName}>{title}:</div>
+            <div className={s.contactInfo}>{contactInfo}</div>
         </div>}
     </>
 

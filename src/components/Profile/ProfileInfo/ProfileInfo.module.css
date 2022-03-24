@@ -75,8 +75,12 @@
 .contacts{
     margin-left: 30px ;
 }
+.contactInfo{
+}
+
 .fieldContactName{
     color:  #00488f;
+    margin-right: 10px;
 }
 .row{
     display: flex;
