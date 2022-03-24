@@ -124,7 +124,7 @@ type ContactType = {
 
 const Contact = ({title, value}: ContactType) => {
     const re = /[-a-zA-Z0-9@:%_\+.~#?&\/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?/gi
-    const contactInfo = re.test(value) ? <a target={'_blank'} href={value}>{value}</a> : value
+     const contactInfo = re.test(value) ? <a target={'_blank'} href={value}>{value.replace(/(^\w+:|^)\/\//, '')}</a> : value
 
     return <>
         {value && <div className={`${s.contacts} ${s.row}`}>
